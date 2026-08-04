@@ -37,6 +37,24 @@ nav a:hover { text-decoration: underline; }
 .status { text-align: center; padding: 2.5rem 1rem; color: var(--dim); font-size: 1.05rem; }
 .status.error { color: var(--red); }
 
+.spinner {
+  width: 40px; height: 40px;
+  margin: 0 auto 1.2rem;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.status-steps { display: inline-block; text-align: left; }
+.step { padding: 0.2rem 0; color: var(--dim); }
+.step::before { content: "○  "; }
+.step.active { color: var(--text); }
+.step.active::before { content: "●  "; color: var(--accent); }
+.step.done { color: var(--dim); }
+.step.done::before { content: "✓  "; color: var(--green); }
+
 .input-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
 
 .dropzone {

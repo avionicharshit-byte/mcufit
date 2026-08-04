@@ -1,4 +1,4 @@
-"""Renderer interface — terminal and JSON today, HTML later."""
+"""Renderer interface - terminal and JSON today, HTML later."""
 
 from __future__ import annotations
 

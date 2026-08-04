@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mcufit — will your AI model fit your microcontroller?</title>
-  <meta name="description" content="Drop a .tflite model, pick a board, get an instant fit verdict. Runs entirely in your browser — your model never leaves your device.">
+  <title>mcufit - will your AI model fit your microcontroller?</title>
+  <meta name="description" content="Drop a .tflite model, pick a board, get an instant fit verdict. Runs entirely in your browser - your model never leaves your device.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📟</text></svg>">
-  <link rel="stylesheet" href="style.css?v=0.3.0">
+  <link rel="stylesheet" href="style.css?v=0.3.2">
 </head>
 <body>
   <header>
     <h1>📟 mcufit</h1>
     <p class="tagline">Will your AI model fit your microcontroller? Find out <em>before</em> you flash it.</p>
-    <p class="privacy">Runs 100% in your browser — your model never leaves your device.</p>
+    <p class="privacy">Runs 100% in your browser - your model never leaves your device.</p>
     <nav>
       <a href="https://github.com/avionicharshit-byte/mcufit">GitHub</a>
       <a href="https://pypi.org/project/mcufit/">PyPI</a>
@@ -21,7 +21,14 @@
   </header>
 
   <main>
-    <div id="status" class="status">Loading analysis engine… <span id="status-detail">(~8 MB, first visit only)</span></div>
+    <div id="status" class="status">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="status-steps">
+        <div class="step active" id="step-runtime">Loading Python runtime <span class="dim">(~8 MB, cached after your first visit)</span></div>
+        <div class="step" id="step-pkg">Installing the mcufit analysis engine</div>
+        <div class="step" id="step-ready">Ready - drop a model to check it</div>
+      </div>
+    </div>
 
     <section id="app" hidden>
       <div class="input-row">
@@ -68,12 +75,12 @@
     <p>Prefer the terminal? <code>pip install mcufit</code> gives you <code>check</code>, <code>compare</code>, <code>inspect</code> and CI-friendly JSON output.</p>
     <blockquote class="why-quote">
       "We don't have a python based tool for determining arena size […] This would be fairly easy to estimate via Python."
-      <cite>— <a href="https://github.com/tensorflow/tflite-micro/issues/2474#issuecomment-2015406610">TFLite Micro maintainer, March 2024</a>. So we built it.</cite>
+      <cite>- <a href="https://github.com/tensorflow/tflite-micro/issues/2474#issuecomment-2015406610">TFLite Micro maintainer, March 2024</a>. So we built it.</cite>
     </blockquote>
     <p>MIT licensed · built because arena sizing "<a href="https://github.com/tensorflow/tensorflow/issues/35070">may need to be determined by experimentation</a>" wasn't a good enough answer.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
-  <script src="app.js?v=0.3.0"></script>
+  <script src="app.js?v=0.3.2"></script>
 </body>
 </html>

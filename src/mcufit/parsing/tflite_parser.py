@@ -44,7 +44,7 @@ class TFLiteModelParser:
             raise ModelParseError(f"cannot read {path}: {exc}") from exc
 
         # Flatbuffers reads lazily, so corruption surfaces on any access,
-        # not just on the initial wrap — hence the wide try.
+        # not just on the initial wrap - hence the wide try.
         try:
             model = tflite.Model.GetRootAsModel(data, 0)
             if model.SubgraphsLength() == 0:

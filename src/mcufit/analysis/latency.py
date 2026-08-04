@@ -2,7 +2,7 @@
 
 Counts multiply-accumulates for the compute-heavy ops and divides by the
 board's rough throughput (clock x MACs/cycle for its core family). Real
-latency depends on kernels, memory placement, and quantization — this is
+latency depends on kernels, memory placement, and quantization - this is
 for "milliseconds or seconds?" answers, and is labelled accordingly.
 """
 

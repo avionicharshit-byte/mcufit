@@ -13,7 +13,7 @@ class Board:
     sram_bytes: int
     flash_bytes: int
     reserved_sram_bytes: int = 0
-    """RAM the RTOS/radio stack eats before the app gets any — verdicts
+    """RAM the RTOS/radio stack eats before the app gets any - verdicts
     should reflect reality, not the datasheet."""
     psram_bytes: int = 0
     notes: str = ""

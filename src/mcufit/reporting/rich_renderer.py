@@ -59,7 +59,7 @@ class RichReportRenderer:
                     f"needs {_fmt(report.flash_needed_bytes)} flash, "
                     f"board has {_fmt(board.flash_bytes)}"
                 )
-            body.append(f" — {'; '.join(reasons)}\n\n", style="red")
+            body.append(f" - {'; '.join(reasons)}\n\n", style="red")
 
         ram_style = "green" if report.fits_ram else "red"
         body.append("RAM   ", style="bold")
@@ -79,7 +79,7 @@ class RichReportRenderer:
         if model.layers and est.peak_layer_index >= 0:
             peak = model.layers[est.peak_layer_index]
             body.append(
-                f"Peak memory moment: layer {peak.index} ({peak.op_name}) — "
+                f"Peak memory moment: layer {peak.index} ({peak.op_name}) - "
                 f"{_fmt(est.peak_activation_bytes)} live tensors\n",
                 style="dim",
             )
@@ -100,5 +100,5 @@ class RichReportRenderer:
         for suggestion in report.suggestions:
             body.append(f"\n • {suggestion.text}", style="cyan")
 
-        title = "mcufit — does it fit?"
+        title = "mcufit - does it fit?"
         c.print(Panel(body, title=title, border_style="green" if report.fits else "red"))

@@ -1,4 +1,4 @@
-"""Board database integrity — a malformed boards.yaml PR should fail CI."""
+"""Board database integrity - a malformed boards.yaml PR should fail CI."""
 
 import pytest
 

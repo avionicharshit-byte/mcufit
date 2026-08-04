@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mcufit"
-version = "0.3.0"
-description = "Check if an AI model fits on a microcontroller — before you flash it."
+version = "0.3.1"
+description = "Check if an AI model fits on a microcontroller - before you flash it."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "avionicharshit-byte", email = "avionicharshit@gmail.com" }]

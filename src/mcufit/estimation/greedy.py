@@ -3,7 +3,7 @@
 A tensor is alive from the op that produces it to the last op that reads
 it; the arena must hold all tensors alive at once, so the peak of that sum
 over the schedule is what TFLM's planner has to pack. Per-op scratch
-buffers (im2col etc.) are invisible to static analysis — covered by a
+buffers (im2col etc.) are invisible to static analysis - covered by a
 safety margin instead.
 """
 

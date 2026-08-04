@@ -1,6 +1,6 @@
 # mcufit board database.
 #
-# Contributions welcome! Add your board with a PR — sizes in bytes.
+# Contributions welcome! Add your board with a PR - sizes in bytes.
 # reserved_sram: RAM typically taken by the RTOS / radio stack / bootloader
 # before your application allocates anything, so verdicts reflect reality.
 
@@ -48,7 +48,7 @@ boards:
     sram: 270336        # 264 KB
     flash: 2097152      # 2 MB
     reserved_sram: 32768
-    notes: "No FPU — float32 models run painfully slowly; quantize to int8."
+    notes: "No FPU - float32 models run painfully slowly; quantize to int8."
 
   - id: rp2350
     vendor: Raspberry Pi
@@ -126,7 +126,7 @@ boards:
     flash: 8388608      # 8 MB
     reserved_sram: 153600
     psram: 8388608
-    notes: "Thumb-sized S3 with camera + mic — a favorite for vision demos."
+    notes: "Thumb-sized S3 with camera + mic - a favorite for vision demos."
 
   - id: uno
     vendor: Arduino
@@ -215,7 +215,7 @@ boards:
     sram: 32768         # 32 KB
     flash: 262144       # 256 KB
     reserved_sram: 8192
-    notes: "No FPU and little RAM — micro-models only."
+    notes: "No FPU and little RAM - micro-models only."
 
   - id: uno-r4
     vendor: Arduino
@@ -260,7 +260,7 @@ boards:
     sram: 65536         # 64 KB
     flash: 524288       # 512 KB
     reserved_sram: 16384   # SoftDevice BLE stack
-    notes: "Half the RAM of the nRF52840 — keyword-spotting territory."
+    notes: "Half the RAM of the nRF52840 - keyword-spotting territory."
 
   - id: xiao-nrf52840
     vendor: Seeed Studio
@@ -282,7 +282,7 @@ boards:
     sram: 196608        # 192 KB
     flash: 524288       # 512 KB internal (+4 MB external SPI)
     reserved_sram: 32768   # display + RTL8720 network co-processor glue
-    notes: "Built-in screen and buttons — great for interactive ML demos."
+    notes: "Built-in screen and buttons - great for interactive ML demos."
 
   - id: sparkfun-edge
     vendor: Other
@@ -304,7 +304,7 @@ boards:
     sram: 20480         # 20 KB
     flash: 65536        # 64 KB (many clones ship 128 KB)
     reserved_sram: 4096
-    notes: "The $2 legend. No FPU, 20 KB RAM — only the tiniest models apply."
+    notes: "The $2 legend. No FPU, 20 KB RAM - only the tiniest models apply."
 
   - id: mega2560
     vendor: Arduino
@@ -339,7 +339,7 @@ boards:
     flash: 16777216     # 16 MB
     reserved_sram: 204800
     psram: 8388608      # 8 MB
-    notes: "ESP32 with screen, battery, and case — demo-ready out of the box."
+    notes: "ESP32 with screen, battery, and case - demo-ready out of the box."
 
   - id: microbit-v2
     vendor: Other

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Rebuilds web/wasm/tflm.js — the TFLM benchmark compiled to WebAssembly.
+# Rebuilds web/wasm/tflm.js - the TFLM benchmark compiled to WebAssembly.
 # Requires emscripten (brew install emscripten) and gmake >= 3.82.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

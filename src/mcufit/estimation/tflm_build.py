@@ -89,7 +89,7 @@ def build_benchmark(cache: Path = TFLM_CACHE, log: Path | None = None, jobs: int
         if log:
             log_file.close()
     if build.returncode != 0:
-        hint = f" — see log: {log}" if log else ""
+        hint = f" - see log: {log}" if log else ""
         raise SetupError(f"TFLM build failed (a C++ toolchain is required){hint}")
 
     binary = find_benchmark_binary(cache)

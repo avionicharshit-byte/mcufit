@@ -1,7 +1,7 @@
 """Exact arena measurement via the TFLM generic benchmark binary.
 
 Runs the model through the real TFLite Micro interpreter compiled for this
-machine and reads the recorded allocations — the same numbers the device
+machine and reads the recorded allocations - the same numbers the device
 would report, without flashing anything. Requires a one-time
 `mcufit setup-exact` to clone and build tflite-micro.
 """

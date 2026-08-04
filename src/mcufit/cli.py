@@ -27,7 +27,7 @@ from .reporting.rich_renderer import RichReportRenderer
 
 app = typer.Typer(
     name="mcufit",
-    help="Check if an AI model fits on a microcontroller — before you flash it.",
+    help="Check if an AI model fits on a microcontroller - before you flash it.",
     no_args_is_help=True,
 )
 console = Console()
@@ -119,7 +119,7 @@ def boards():
         table.add_row(
             b.vendor, b.id, b.name,
             _fmt(b.usable_sram_bytes), _fmt(b.flash_bytes),
-            _fmt(b.psram_bytes) if b.psram_bytes else "—",
+            _fmt(b.psram_bytes) if b.psram_bytes else "-",
         )
     console.print(table)
 
@@ -170,7 +170,7 @@ def compare(
     model_info = _parse_model(model)
     reports = _checker(exact).check_all(model_info)
 
-    table = Table(title=f"{model_info.path.name} — fit across boards")
+    table = Table(title=f"{model_info.path.name} - fit across boards")
     table.add_column("board", style="cyan")
     table.add_column("usable SRAM", justify="right")
     table.add_column("arena needed", justify="right")
@@ -197,7 +197,7 @@ def setup_exact():
         return
 
     log = Path.home() / ".cache" / "mcufit" / "build.log"
-    console.print("Cloning and building tflite-micro — this takes a few minutes...")
+    console.print("Cloning and building tflite-micro - this takes a few minutes...")
     try:
         with console.status("compiling"):
             binary = build_benchmark(log=log)

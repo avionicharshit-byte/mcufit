@@ -67,7 +67,7 @@ class FitChecker:
                 )
             if report.board.psram_bytes:
                 yield Suggestion(
-                    f"This board offers {_fmt(report.board.psram_bytes)} PSRAM — placing the "
+                    f"This board offers {_fmt(report.board.psram_bytes)} PSRAM - placing the "
                     "arena there fits easily, at some latency cost."
                 )
 
@@ -85,7 +85,7 @@ class FitChecker:
     @staticmethod
     def _int8_projection(model: ModelInfo) -> int:
         # Re-run the lifetime analysis on the int8-transformed graph rather
-        # than dividing totals by four — bias tensors and alignment don't
+        # than dividing totals by four - bias tensors and alignment don't
         # shrink, and this accounts for both.
         from ..estimation.greedy import GreedyLifetimeEstimator
 

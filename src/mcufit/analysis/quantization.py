@@ -1,7 +1,7 @@
 """Simulates int8 quantization by transforming the parsed model.
 
 Instead of guessing "divide by 4", shrink every float tensor to one byte
-per element — what int8 conversion actually does — and re-run the same
+per element - what int8 conversion actually does - and re-run the same
 lifetime analysis on the transformed graph. Biases stay int32, exactly as
 real converters keep them.
 """

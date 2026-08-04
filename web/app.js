@@ -1,4 +1,4 @@
-/* mcufit web — runs the mcufit Python package in the browser via Pyodide.
+/* mcufit web - runs the mcufit Python package in the browser via Pyodide.
  * The wheel is built from this repo at deploy time and served from this
  * site's own origin (web/wheels/), so page and package can never drift.
  * The model file is analyzed in the in-browser filesystem; nothing is
@@ -110,7 +110,7 @@ function loadTflm() {
 }
 
 /* Run the model through the real TFLM interpreter compiled to WebAssembly
- * and read its recorded arena allocations. Returns null on any failure —
+ * and read its recorded arena allocations. Returns null on any failure -
  * the static estimate then stands. */
 async function measureArena(bytes) {
   try {
@@ -136,11 +136,19 @@ async function measureArena(bytes) {
   }
 }
 
+function setStep(id) {
+  const steps = ["step-runtime", "step-pkg", "step-ready"];
+  const current = steps.indexOf(id);
+  steps.forEach((step, i) => {
+    el(step).className = "step" + (i < current ? " done" : i === current ? " active" : "");
+  });
+}
+
 async function boot() {
   try {
-    el("status-detail").textContent = "(~8 MB, first visit only)";
+    setStep("step-runtime");
     pyodide = await loadPyodide();
-    el("status").firstChild.textContent = "Installing mcufit… ";
+    setStep("step-pkg");
     await pyodide.loadPackage("micropip");
     const micropip = pyodide.pyimport("micropip");
     await micropip.install(["tflite", "pyyaml", "numpy"]);
@@ -148,12 +156,16 @@ async function boot() {
     await micropip.install(new URL(`wheels/${manifest.wheel}`, location.href).href, { deps: false });
     pyodide.runPython(PY_SETUP);
     populateBoards();
-    el("status").hidden = true;
-    el("app").hidden = false;
+    setStep("step-ready");
+    document.querySelector(".spinner").style.display = "none";
+    setTimeout(() => {
+      el("status").hidden = true;
+      el("app").hidden = false;
+    }, 400);
   } catch (err) {
     el("status").classList.add("error");
     el("status").textContent =
-      "Failed to load the analysis engine — please refresh, or use the CLI: pip install mcufit. (" + err + ")";
+      "Failed to load the analysis engine - please refresh, or use the CLI: pip install mcufit. (" + err + ")";
   }
 }
 
@@ -176,7 +188,7 @@ function populateBoards() {
     for (const b of groups.get(vendor).sort((a, b) => a.name.localeCompare(b.name))) {
       const opt = document.createElement("option");
       opt.value = b.id;
-      opt.textContent = `${b.name} — ${fmt(b.usable_sram)} SRAM`;
+      opt.textContent = `${b.name} - ${fmt(b.usable_sram)} SRAM`;
       optgroup.appendChild(opt);
     }
     select.appendChild(optgroup);
@@ -195,7 +207,7 @@ function analyze() {
     result = JSON.parse(analyzeFn("/tmp/model.tflite", board, m ? m.np : null, m ? m.p : null));
     analyzeFn.destroy();
   } catch (err) {
-    alert("Could not analyze this file — is it a valid .tflite model?\n\n" + err);
+    alert("Could not analyze this file - is it a valid .tflite model?\n\n" + err);
     return;
   }
   render(result);
@@ -217,7 +229,7 @@ function render({ selected: s, rows, model }) {
     `${fmt(s.flash_needed)} total / ${fmt(s.board_flash)} (${Math.min(999, Math.round(s.flash_utilization * 100))}%)`);
 
   el("peak-info").textContent =
-    `Peak memory moment: layer ${s.peak_layer_index} (${s.peak_layer_op}) — ${fmt(s.peak_activation)} of simultaneously-live tensors.`;
+    `Peak memory moment: layer ${s.peak_layer_index} (${s.peak_layer_op}) - ${fmt(s.peak_activation)} of simultaneously-live tensors.`;
 
   const ul = el("suggestions");
   ul.innerHTML = "";
@@ -232,7 +244,7 @@ function render({ selected: s, rows, model }) {
     note.classList.add("measured");
     note.innerHTML =
       "<strong>✓ Measured by the real TFLite Micro runtime</strong> (compiled to " +
-      "WebAssembly, 32-bit — the same allocation numbers a device reports). " +
+      "WebAssembly, 32-bit - the same allocation numbers a device reports). " +
       'No estimate involved. CLI equivalent: <code>mcufit check model.tflite -b board --exact</code>';
   } else {
     note.classList.remove("measured");
