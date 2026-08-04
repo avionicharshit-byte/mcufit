@@ -2,8 +2,11 @@
 
 **Check if an AI model fits on a microcontroller — before you flash it.**
 
-**🌐 Try it in your browser — no install:** https://avionicharshit-byte.github.io/mcufit/
-(drag in a `.tflite`, pick a board, get the verdict; your model never leaves your device)
+<p align="center">
+  <a href="https://avionicharshit-byte.github.io/mcufit/"><b>🌐 Try it in your browser</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://pypi.org/project/mcufit/"><b>📦 pip install mcufit</b></a>
+</p>
 
 You trained a model. You have a board. Will it run, or will it crash with a
 cryptic allocation failure after an hour of toolchain setup? Today the
