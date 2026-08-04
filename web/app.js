@@ -31,12 +31,32 @@ def list_boards():
         for b in _repo.list()
     ])
 
-def analyze(path, board_id):
+class _FixedEstimator:
+    """Feeds browser-measured (WASM TFLM) numbers through the verdict logic."""
+
+    def __init__(self, nonpersistent, persistent):
+        self._np = nonpersistent
+        self._p = persistent
+
+    def estimate(self, model):
+        from mcufit.domain.report import MemoryEstimate
+        return MemoryEstimate(
+            peak_activation_bytes=self._np, overhead_bytes=self._p,
+            margin_bytes=0, peak_layer_index=-1, method="tflm-wasm-measurement",
+        )
+
+def analyze(path, board_id, measured_np=None, measured_p=None):
     model = _parser.parse(Path(path))
+    checker = _checker
+    if measured_np is not None:
+        checker = FitChecker(
+            estimator=_FixedEstimator(int(measured_np), int(measured_p or 0)),
+            boards=_repo,
+        )
     rows = []
     selected = None
     for board in _repo.list():
-        report = _checker.check(model, board)
+        report = checker.check(model, board)
         row = {
             "board_id": board.id, "board_name": board.name,
             "usable_sram": board.usable_sram_bytes,
@@ -66,12 +86,55 @@ def analyze(path, board_id):
         "quantization": model.quantization.value,
         "layers": len(model.layers),
         "file_size": model.file_size_bytes,
+        "measured": measured_np is not None,
     }
     return json.dumps({"selected": selected, "rows": rows, "model": meta})
 `;
 
 let pyodide = null;
 let currentFile = null; // { name, bytes }
+let currentMeasured = null; // { np, p } from the WASM TFLM run, or null
+
+let tflmFactoryPromise = null;
+function loadTflm() {
+  if (!tflmFactoryPromise) {
+    tflmFactoryPromise = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "wasm/tflm.js";
+      s.onload = () => resolve(window.createTflmModule);
+      s.onerror = () => reject(new Error("could not load wasm/tflm.js"));
+      document.head.appendChild(s);
+    });
+  }
+  return tflmFactoryPromise;
+}
+
+/* Run the model through the real TFLM interpreter compiled to WebAssembly
+ * and read its recorded arena allocations. Returns null on any failure —
+ * the static estimate then stands. */
+async function measureArena(bytes) {
+  try {
+    const factory = await loadTflm();
+    const lines = [];
+    const mod = await factory({
+      print: (t) => lines.push(t),
+      printErr: (t) => lines.push(t),
+    });
+    mod.FS.writeFile("/model.tflite", bytes);
+    try {
+      mod.callMain(["/model.tflite"]);
+    } catch (e) {
+      // emscripten raises ExitStatus on clean exit; output is already captured
+    }
+    const section = lines.join("\n").split("[[ Table ]]: Arena")[1] || "";
+    const np = /NonPersistent\s*\|\s*(\d+)/.exec(section);
+    const p = /\bPersistent\s*\|\s*(\d+)/.exec(section);
+    return np ? { np: +np[1], p: p ? +p[1] : 0 } : null;
+  } catch (err) {
+    console.warn("wasm measurement unavailable:", err);
+    return null;
+  }
+}
 
 async function boot() {
   try {
@@ -125,10 +188,11 @@ function analyze() {
   if (!currentFile || !pyodide) return;
   pyodide.FS.writeFile("/tmp/model.tflite", currentFile.bytes);
   const board = el("board-select").value;
+  const m = currentMeasured;
   let result;
   try {
     const analyzeFn = pyodide.globals.get("analyze");
-    result = JSON.parse(analyzeFn("/tmp/model.tflite", board));
+    result = JSON.parse(analyzeFn("/tmp/model.tflite", board, m ? m.np : null, m ? m.p : null));
     analyzeFn.destroy();
   } catch (err) {
     alert("Could not analyze this file — is it a valid .tflite model?\n\n" + err);
@@ -163,15 +227,31 @@ function render({ selected: s, rows, model }) {
     ul.appendChild(li);
   }
 
+  const note = el("method-note");
+  if (model.measured) {
+    note.classList.add("measured");
+    note.innerHTML =
+      "<strong>✓ Measured by the real TFLite Micro runtime</strong> (compiled to " +
+      "WebAssembly, 32-bit — the same allocation numbers a device reports). " +
+      'No estimate involved. CLI equivalent: <code>mcufit check model.tflite -b board --exact</code>';
+  } else {
+    note.classList.remove("measured");
+    note.innerHTML =
+      "<strong>⚠️ Fast estimate</strong> (static analysis; measuring with the real " +
+      "runtime in the background…). For exact numbers in the terminal: " +
+      "<code>pip install mcufit && mcufit setup-exact && mcufit check model.tflite -b esp32-s3 --exact</code>";
+  }
+
   const tbody = el("matrix").querySelector("tbody");
   tbody.innerHTML = "";
+  const tilde = model.measured ? "" : "~";
   for (const row of rows) {
     const tr = document.createElement("tr");
     if (row.board_id === el("board-select").value) tr.classList.add("highlight");
     tr.innerHTML =
       `<td>${row.board_name}</td>` +
       `<td class="num">${fmt(row.usable_sram)}</td>` +
-      `<td class="num">~${fmt(row.arena)}</td>` +
+      `<td class="num">${tilde}${fmt(row.arena)}</td>` +
       `<td>${row.fits ? '<span class="fits">✅ fits</span>' : '<span class="no-fit">❌ no</span>'}</td>`;
     tbody.appendChild(tr);
   }
@@ -185,9 +265,19 @@ function setMeter(kind, ratio, ok, text) {
 }
 
 function acceptFile(file) {
-  file.arrayBuffer().then((buf) => {
-    currentFile = { name: file.name, bytes: new Uint8Array(buf) };
-    analyze();
+  file.arrayBuffer().then((buf) => setModel(file.name, new Uint8Array(buf)));
+}
+
+function setModel(name, bytes) {
+  const model = { name, bytes };
+  currentFile = model;
+  currentMeasured = null;
+  analyze(); // instant static verdict first
+  measureArena(bytes).then((m) => {
+    if (m && currentFile === model) {
+      currentMeasured = m;
+      analyze(); // re-render with measured numbers
+    }
   });
 }
 
@@ -207,8 +297,7 @@ el("board-select").addEventListener("change", analyze);
 el("example-btn").addEventListener("click", async () => {
   const resp = await fetch("examples/person_detect.tflite");
   const buf = await resp.arrayBuffer();
-  currentFile = { name: "person_detect.tflite", bytes: new Uint8Array(buf) };
-  analyze();
+  setModel("person_detect.tflite", new Uint8Array(buf));
 });
 
 boot();

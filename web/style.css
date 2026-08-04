@@ -103,6 +103,8 @@ select {
 
 .dim { color: var(--dim); font-size: 0.85rem; margin-top: 0.7rem; }
 .estimate-note { margin-top: 1rem; padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-left: 3px solid #d29922; border-radius: 8px; font-size: 0.88rem; }
+.estimate-note.measured { border-left-color: var(--green); }
+.estimate-note.measured code { display: inline; white-space: normal; padding: 0.1rem 0.3rem; }
 .estimate-note code { display: block; margin: 0.45rem 0; padding: 0.45rem 0.6rem; background: var(--bg); border-radius: 6px; overflow-x: auto; white-space: nowrap; font-size: 0.82rem; }
 .estimate-note .dim { margin-top: 0.2rem; display: block; }
 .method-note { margin-top: 1rem; }

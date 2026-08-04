@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mcufit"
-version = "0.2.0"
+version = "0.3.0"
 description = "Check if an AI model fits on a microcontroller — before you flash it."
 readme = "README.md"
 license = { text = "MIT" }
@@ -36,7 +36,8 @@ Issues = "https://github.com/avionicharshit-byte/mcufit/issues"
 mcufit = "mcufit.cli:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0"]
+onnx = ["onnx>=1.15"]
+dev = ["pytest>=7.0", "onnx>=1.15"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mcufit"]

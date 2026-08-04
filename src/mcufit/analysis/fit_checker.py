@@ -5,15 +5,14 @@ from __future__ import annotations
 from ..boards.base import BoardRepository
 from ..domain.board import Board
 from ..domain.model import ModelInfo, Quantization
-from ..domain.report import FitReport, MemoryEstimate, Suggestion
+from ..domain.report import FitReport, Suggestion
 from ..estimation.base import ArenaEstimator
+from .quantization import project_int8, projected_file_size
 
 # Flash consumed by the TFLite Micro runtime + kernels themselves, on top
 # of the model file. Varies with the op set linked in; this is a typical
 # figure for a small int8 CNN build on Cortex-M/Xtensa.
 _TFLM_RUNTIME_FLASH_BYTES = 150 * 1024
-
-_INT8_SHRINK_FACTOR = 4  # float32 -> int8 shrinks weights and activations ~4x
 
 
 class FitChecker:
@@ -59,10 +58,11 @@ class FitChecker:
 
         if not report.fits_ram:
             if report.model.quantization == Quantization.FLOAT32:
-                int8_arena = self._int8_projection(report.estimate)
+                int8_arena = self._int8_projection(report.model)
                 verdict = "fits" if int8_arena <= report.board.usable_sram_bytes else "still does not fit"
                 yield Suggestion(
-                    f"Quantize float32 -> int8: est. arena drops to ~{_fmt(int8_arena)} "
+                    f"Quantize float32 -> int8: est. arena drops to ~{_fmt(int8_arena)}, "
+                    f"file to ~{_fmt(projected_file_size(report.model))} "
                     f"({verdict} on this board)."
                 )
             if report.board.psram_bytes:
@@ -83,12 +83,13 @@ class FitChecker:
             yield Suggestion(f"Smallest boards that fit this model as-is: {names}.")
 
     @staticmethod
-    def _int8_projection(estimate: MemoryEstimate) -> int:
-        return (
-            estimate.peak_activation_bytes // _INT8_SHRINK_FACTOR
-            + estimate.overhead_bytes
-            + estimate.margin_bytes // _INT8_SHRINK_FACTOR
-        )
+    def _int8_projection(model: ModelInfo) -> int:
+        # Re-run the lifetime analysis on the int8-transformed graph rather
+        # than dividing totals by four — bias tensors and alignment don't
+        # shrink, and this accounts for both.
+        from ..estimation.greedy import GreedyLifetimeEstimator
+
+        return GreedyLifetimeEstimator().estimate(project_int8(model)).total_arena_bytes
 
 
 def _fmt(size: int) -> str:

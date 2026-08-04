@@ -6,6 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
+from ..analysis.latency import estimate_latency_ms
 from ..domain.report import FitReport
 
 _BAR_WIDTH = 20
@@ -80,6 +81,14 @@ class RichReportRenderer:
             body.append(
                 f"Peak memory moment: layer {peak.index} ({peak.op_name}) — "
                 f"{_fmt(est.peak_activation_bytes)} live tensors\n",
+                style="dim",
+            )
+        latency = estimate_latency_ms(model, board)
+        if latency is not None and report.fits:
+            fps = 1000 / latency if latency > 0 else 0
+            body.append(
+                f"Speed (very rough): ~{latency:.0f} ms/inference (~{fps:.1f}/sec) "
+                f"on this chip\n",
                 style="dim",
             )
         body.append(

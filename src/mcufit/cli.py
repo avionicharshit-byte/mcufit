@@ -34,15 +34,17 @@ console = Console()
 
 
 def _parse_model(model_path: Path) -> ModelInfo:
-    parser = TFLiteModelParser()
-    if not parser.supports(model_path):
-        console.print(f"[red]Unsupported model format: {model_path.suffix} (expected .tflite)[/red]")
-        raise typer.Exit(2)
-    try:
-        return parser.parse(model_path)
-    except ModelParseError as exc:
-        console.print(f"[red]{exc}[/red]")
-        raise typer.Exit(2)
+    from .parsing.onnx_parser import OnnxModelParser
+
+    for parser in (TFLiteModelParser(), OnnxModelParser()):
+        if parser.supports(model_path):
+            try:
+                return parser.parse(model_path)
+            except ModelParseError as exc:
+                console.print(f"[red]{exc}[/red]")
+                raise typer.Exit(2)
+    console.print(f"[red]Unsupported model format: {model_path.suffix} (expected .tflite or .onnx)[/red]")
+    raise typer.Exit(2)
 
 
 def _estimator(exact: bool) -> ArenaEstimator:
@@ -78,6 +80,9 @@ def check(
     exact: bool = typer.Option(False, "--exact", "-x", help="Measure with the real TFLM runtime (needs `mcufit setup-exact`)"),
 ):
     """Check whether MODEL fits on BOARD. Exit code 1 if it does not."""
+    if exact and model.suffix.lower() == ".onnx":
+        console.print("[red]Exact mode runs the TFLM runtime and supports .tflite only.[/red]")
+        raise typer.Exit(2)
     model_info = _parse_model(model)
     checker = _checker(exact)
     try:

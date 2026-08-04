@@ -68,6 +68,8 @@ class YamlBoardRepository:
             psram_bytes=int(entry.get("psram", 0)),
             notes=str(entry.get("notes", "")),
             vendor=str(entry.get("vendor", "Other")),
+            cpu_mhz=int(entry.get("cpu_mhz", 0)),
+            macs_per_cycle=float(entry.get("macs_per_cycle", 0)),
         )
         if board.id != board.id.lower() or " " in board.id:
             raise BoardDataError(f"board id '{board.id}' must be lowercase with no spaces")

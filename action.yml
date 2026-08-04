@@ -1,0 +1,36 @@
+name: "mcufit check"
+description: "Fail CI when an AI model no longer fits its target microcontroller"
+branding:
+  icon: "cpu"
+  color: "green"
+
+inputs:
+  model:
+    description: "Path to the .tflite model in the repository"
+    required: true
+  board:
+    description: "Target board id (see `mcufit boards`)"
+    required: true
+  exact:
+    description: "Measure with the real TFLM runtime instead of static analysis (slower first run: builds TFLM)"
+    required: false
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: pip install --quiet mcufit
+    - if: inputs.exact == 'true'
+      shell: bash
+      run: |
+        pip install --quiet pillow
+        mcufit setup-exact
+    - shell: bash
+      run: |
+        EXACT_FLAG=""
+        if [ "${{ inputs.exact }}" = "true" ]; then EXACT_FLAG="--exact"; fi
+        mcufit check "${{ inputs.model }}" -b "${{ inputs.board }}" $EXACT_FLAG

@@ -12,6 +12,8 @@
   <a href="https://pypi.org/project/mcufit/"><b>📦 pip install mcufit</b></a>
 </p>
 
+![mcufit demo](docs/demo.svg)
+
 You trained a model. You have a board. Will it run, or will it crash with a
 cryptic allocation failure after an hour of toolchain setup? Today the
 official answer from the TensorFlow Lite Micro docs is that arena size
@@ -54,6 +56,29 @@ pip install mcufit
 | `mcufit compare model.tflite` | Verdict matrix across every board in the database |
 | `mcufit inspect model.tflite` | Layer-by-layer memory profile — see *where* the peak is |
 | `mcufit boards` | List all known boards |
+
+`.onnx` models work everywhere `.tflite` does (install with
+`pip install 'mcufit[onnx]'`), with two caveats: verdicts are estimates
+(ONNX runtimes manage memory differently than TFLM) and exact mode stays
+`.tflite`-only. Fit verdicts also include a rough speed figure
+(~ms/inference) derived from the model's multiply-accumulate count and the
+board's clock — an order-of-magnitude sanity check, not a benchmark.
+
+## Guard your model in CI
+
+A model that grows past the board's RAM should fail the pull request, not
+the field deployment. One step in any GitHub workflow:
+
+```yaml
+- uses: avionicharshit-byte/mcufit@main
+  with:
+    model: models/wake_word.tflite
+    board: esp32-s3
+    # exact: "true"   # optional: measured numbers via host-built TFLM
+```
+
+The action exits non-zero when the model no longer fits, with the full
+verdict in the job log.
 
 ## How it works
 
@@ -111,10 +136,11 @@ welcome.
 ## Roadmap
 
 - [x] Exact mode: measured arena numbers via host-compiled TFLM (`--exact`)
-- [ ] Exact mode in the browser (TFLM compiled to WebAssembly)
-- [ ] ONNX model support
-- [ ] Latency estimation per board
-- [ ] GitHub Action (`mcufit-action`) to guard model size in CI
+- [x] Exact mode in the browser: the site measures with TFLM compiled to WebAssembly (32-bit, like the target MCUs), falling back to static estimates
+- [x] ONNX model support (`pip install 'mcufit[onnx]'` — estimates only; exact mode stays .tflite)
+- [x] Rough latency estimation per board (MAC count / board throughput — order-of-magnitude only)
+- [x] GitHub Action to guard model size in CI (see above)
+- [x] Quantization preview: int8 projection simulated on the transformed graph, not naive /4 math
 - [x] Web UI: [mcufit in the browser](https://avionicharshit-byte.github.io/mcufit/) — same package, running via Pyodide
 
 ## Why this exists

@@ -6,6 +6,7 @@ import json
 import sys
 from typing import TextIO
 
+from ..analysis.latency import count_macs, estimate_latency_ms
 from ..domain.report import FitReport
 
 
@@ -41,6 +42,8 @@ class JsonReportRenderer:
                 "method": est.method,
             },
             "flash_needed_bytes": report.flash_needed_bytes,
+            "macs": count_macs(report.model),
+            "rough_latency_ms": estimate_latency_ms(report.model, report.board),
             "fits": report.fits,
             "fits_ram": report.fits_ram,
             "fits_flash": report.fits_flash,
