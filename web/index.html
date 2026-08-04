@@ -44,7 +44,12 @@
           <div class="meter-row"><span class="meter-label">Flash</span><div class="meter"><div id="flash-bar" class="meter-fill"></div></div><span id="flash-text" class="meter-text"></span></div>
           <p id="peak-info" class="dim"></p>
           <ul id="suggestions"></ul>
-          <p class="dim method-note">Estimates via static tensor-lifetime analysis (+ runtime overhead + scratch margin). Exact measurement mode is on the <a href="https://github.com/avionicharshit-byte/mcufit#roadmap">roadmap</a>.</p>
+          <div class="estimate-note">
+            <strong>⚠️ This is a fast estimate</strong> (static analysis; real usage is often 10–20% higher).
+            For <strong>exact numbers measured by the real TFLM runtime</strong>, use the CLI:
+            <code>pip install mcufit && mcufit setup-exact && mcufit check model.tflite -b esp32-s3 --exact</code>
+            <span class="dim">In-browser exact mode (WebAssembly) is on the <a href="https://github.com/avionicharshit-byte/mcufit#roadmap">roadmap</a>.</span>
+          </div>
         </div>
 
         <div class="card">

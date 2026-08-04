@@ -111,6 +111,7 @@ welcome.
 ## Roadmap
 
 - [x] Exact mode: measured arena numbers via host-compiled TFLM (`--exact`)
+- [ ] Exact mode in the browser (TFLM compiled to WebAssembly)
 - [ ] ONNX model support
 - [ ] Latency estimation per board
 - [ ] GitHub Action (`mcufit-action`) to guard model size in CI
