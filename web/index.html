@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mcufit — will your AI model fit your microcontroller?</title>
+  <meta name="description" content="Drop a .tflite model, pick a board, get an instant fit verdict. Runs entirely in your browser — your model never leaves your device.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📟</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📟 mcufit</h1>
+    <p class="tagline">Will your AI model fit your microcontroller? Find out <em>before</em> you flash it.</p>
+    <p class="privacy">Runs 100% in your browser — your model never leaves your device.</p>
+    <nav>
+      <a href="https://github.com/avionicharshit-byte/mcufit">GitHub</a>
+      <a href="https://pypi.org/project/mcufit/">PyPI</a>
+      <code class="pill">pip install mcufit</code>
+    </nav>
+  </header>
+
+  <main>
+    <div id="status" class="status">Loading analysis engine… <span id="status-detail">(~8 MB, first visit only)</span></div>
+
+    <section id="app" hidden>
+      <div class="input-row">
+        <div id="dropzone" class="dropzone" tabindex="0">
+          <strong>Drop a <code>.tflite</code> model here</strong>
+          <span>or click to browse</span>
+          <input type="file" id="file-input" accept=".tflite,.lite" hidden>
+        </div>
+        <div class="side-controls">
+          <button id="example-btn" class="secondary">Try example model<br><small>(person detection, 294 KB)</small></button>
+          <label for="board-select">Target board</label>
+          <select id="board-select"></select>
+        </div>
+      </div>
+
+      <section id="result" hidden>
+        <div id="verdict-card" class="card">
+          <div id="verdict-head"></div>
+          <div class="meter-row"><span class="meter-label">RAM</span><div class="meter"><div id="ram-bar" class="meter-fill"></div></div><span id="ram-text" class="meter-text"></span></div>
+          <div class="meter-row"><span class="meter-label">Flash</span><div class="meter"><div id="flash-bar" class="meter-fill"></div></div><span id="flash-text" class="meter-text"></span></div>
+          <p id="peak-info" class="dim"></p>
+          <ul id="suggestions"></ul>
+          <p class="dim method-note">Estimates via static tensor-lifetime analysis (+ runtime overhead + scratch margin). Exact measurement mode is on the <a href="https://github.com/avionicharshit-byte/mcufit#roadmap">roadmap</a>.</p>
+        </div>
+
+        <div class="card">
+          <h2>Across all boards</h2>
+          <table id="matrix">
+            <thead><tr><th>Board</th><th>Usable SRAM</th><th>Arena needed</th><th>Verdict</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <p class="dim">Board missing? <a href="https://github.com/avionicharshit-byte/mcufit/blob/main/src/mcufit/boards/data/boards.yaml">Add it with a 10-line PR.</a></p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>Prefer the terminal? <code>pip install mcufit</code> gives you <code>check</code>, <code>compare</code>, <code>inspect</code> and CI-friendly JSON output.</p>
+    <p>MIT licensed · built because arena sizing "<a href="https://github.com/tensorflow/tensorflow/issues/35070">may need to be determined by experimentation</a>" wasn't a good enough answer.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
