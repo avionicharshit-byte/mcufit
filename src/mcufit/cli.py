@@ -1,8 +1,4 @@
-"""mcufit command-line interface.
-
-This module is the composition root: the only place concrete parser,
-estimator, repository, and renderer implementations are instantiated.
-"""
+"""mcufit command-line interface. All concrete implementations are wired here."""
 
 from __future__ import annotations
 

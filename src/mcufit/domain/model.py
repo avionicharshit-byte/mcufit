@@ -1,8 +1,4 @@
-"""Core domain objects describing a parsed ML model.
-
-These are pure data structures: no parsing, no I/O, no estimation logic.
-Every other layer of mcufit depends on these, never the other way around.
-"""
+"""Domain objects describing a parsed ML model."""
 
 from __future__ import annotations
 
@@ -29,8 +25,8 @@ class TensorInfo:
     dtype: str
     size_bytes: int
     is_weight: bool
-    """True if the tensor has static data baked into the model (lives in
-    flash), False if it is an activation computed at runtime (lives in RAM)."""
+    """Weights ship in the model file and live in flash; activations are
+    computed at runtime and live in RAM."""
 
 
 @dataclass(frozen=True)

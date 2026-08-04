@@ -1,14 +1,10 @@
-"""Static tensor-lifetime analysis of peak arena usage.
+"""Static estimate of peak tensor-arena usage.
 
-The tensor arena must hold every activation tensor that is alive at the
-same moment. A tensor is alive from the operator that produces it until
-the last operator that consumes it. Peak arena demand is the largest sum
-of simultaneously-alive tensors across the execution schedule — the same
-quantity TFLite Micro's memory planner packs into the arena.
-
-Static analysis cannot see per-op scratch buffers (e.g. im2col space in
-optimized conv kernels), so a configurable safety margin is added and the
-result is honestly labelled an estimate.
+A tensor is alive from the op that produces it to the last op that reads
+it; the arena must hold all tensors alive at once, so the peak of that sum
+over the schedule is what TFLM's planner has to pack. Per-op scratch
+buffers (im2col etc.) are invisible to static analysis — covered by a
+safety margin instead.
 """
 
 from __future__ import annotations

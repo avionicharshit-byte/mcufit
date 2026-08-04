@@ -1,8 +1,4 @@
-"""Parser abstraction.
-
-New model formats (ONNX, CoreML, ...) are added by implementing this
-protocol — nothing downstream changes (open/closed principle).
-"""
+"""Parser interface. New formats (ONNX, ...) plug in by implementing it."""
 
 from __future__ import annotations
 

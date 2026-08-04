@@ -13,8 +13,8 @@ class Board:
     sram_bytes: int
     flash_bytes: int
     reserved_sram_bytes: int = 0
-    """RAM typically consumed by the RTOS / Wi-Fi stack / bootloader before
-    the application gets any, so verdicts reflect reality, not the datasheet."""
+    """RAM the RTOS/radio stack eats before the app gets any — verdicts
+    should reflect reality, not the datasheet."""
     psram_bytes: int = 0
     notes: str = ""
 

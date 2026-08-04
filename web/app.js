@@ -2,7 +2,7 @@
  * Pyodide. The model file is written to the in-browser filesystem and
  * analyzed there; nothing is uploaded anywhere. */
 
-const MCUFIT_VERSION = "0.1.0";
+const MCUFIT_VERSION = "0.1.2";
 
 const el = (id) => document.getElementById(id);
 const fmt = (bytes) => {

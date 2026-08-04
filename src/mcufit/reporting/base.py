@@ -1,5 +1,4 @@
-"""Renderer abstraction — terminal, JSON, and future formats (HTML,
-GitHub-comment markdown) all implement this."""
+"""Renderer interface — terminal and JSON today, HTML later."""
 
 from __future__ import annotations
 

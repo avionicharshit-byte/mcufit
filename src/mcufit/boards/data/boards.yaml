@@ -102,3 +102,159 @@ boards:
     flash: 32768        # 32 KB
     reserved_sram: 512
     notes: "Spoiler: your model does not fit. Included so the tool can prove it."
+
+  - id: esp32-s2
+    name: ESP32-S2 DevKit
+    chip: ESP32-S2 (Xtensa LX7 single-core @ 240 MHz)
+    sram: 327680        # 320 KB
+    flash: 4194304      # 4 MB
+    reserved_sram: 131072
+    notes: "Single core, Wi-Fi only (no BT); optional PSRAM on some modules."
+
+  - id: esp32-c6
+    name: ESP32-C6 DevKit
+    chip: ESP32-C6 (RISC-V @ 160 MHz)
+    sram: 524288        # 512 KB HP SRAM
+    flash: 4194304      # 4 MB
+    reserved_sram: 153600
+    notes: "Wi-Fi 6 + BLE + 802.15.4 (Thread/Zigbee)."
+
+  - id: esp32-p4
+    name: ESP32-P4 DevKit
+    chip: ESP32-P4 (RISC-V dual-core @ 400 MHz)
+    sram: 786432        # 768 KB HP SRAM
+    flash: 16777216     # 16 MB (module-dependent)
+    reserved_sram: 65536   # no radio stack on-chip
+    psram: 8388608      # PSRAM size varies by module
+    notes: "Espressif's compute flagship: no radio, AI instruction extensions."
+
+  - id: esp8266
+    name: ESP8266 NodeMCU
+    chip: ESP8266 (Xtensa L106 @ 80 MHz)
+    sram: 81920         # ~80 KB user RAM
+    flash: 4194304      # 4 MB SPI flash
+    reserved_sram: 32768   # Wi-Fi stack + heap fragmentation
+    notes: "Legacy but everywhere. Only the tiniest int8 models are realistic."
+
+  - id: pico-w
+    name: Raspberry Pi Pico W
+    chip: RP2040 (Cortex-M0+ dual-core @ 133 MHz)
+    sram: 270336        # 264 KB
+    flash: 2097152      # 2 MB
+    reserved_sram: 65536   # CYW43 wireless driver + lwIP
+    notes: "Same silicon as the Pico; the Wi-Fi stack eats ~32 KB extra RAM."
+
+  - id: teensy40
+    name: Teensy 4.0
+    chip: i.MX RT1062 (Cortex-M7 @ 600 MHz)
+    sram: 1048576       # 1 MB
+    flash: 2031616      # ~1.94 MB program flash
+    reserved_sram: 65536
+    notes: "Teensy 4.1 minus the big flash and PSRAM pads."
+
+  - id: nano33iot
+    name: Arduino Nano 33 IoT
+    chip: SAMD21G18 (Cortex-M0+ @ 48 MHz)
+    sram: 32768         # 32 KB
+    flash: 262144       # 256 KB
+    reserved_sram: 8192
+    notes: "No FPU and little RAM — micro-models only."
+
+  - id: uno-r4
+    name: Arduino Uno R4
+    chip: RA4M1 (Cortex-M4 @ 48 MHz)
+    sram: 32768         # 32 KB
+    flash: 262144       # 256 KB
+    reserved_sram: 4096
+    notes: "The modern Uno. 16x the RAM of the R3, still tight for ML."
+
+  - id: portenta-h7
+    name: Arduino Portenta H7
+    chip: STM32H747XI (Cortex-M7 @ 480 MHz + M4 @ 240 MHz)
+    sram: 1048576       # 1 MB on-chip
+    flash: 2097152      # 2 MB on-chip
+    reserved_sram: 131072
+    psram: 8388608      # 8 MB SDRAM
+    notes: "Arduino's pro board; 8 MB SDRAM for big arenas."
+
+  - id: stm32f407-disco
+    name: STM32F407 Discovery
+    chip: STM32F407VG (Cortex-M4F @ 168 MHz)
+    sram: 196608        # 192 KB (128 KB SRAM + 64 KB CCM)
+    flash: 1048576      # 1 MB
+    reserved_sram: 16384
+    notes: "Classic student board. 64 KB of the RAM is CCM (no DMA access)."
+
+  - id: nrf52832
+    name: nRF52832 DK
+    chip: nRF52832 (Cortex-M4F @ 64 MHz)
+    sram: 65536         # 64 KB
+    flash: 524288       # 512 KB
+    reserved_sram: 16384   # SoftDevice BLE stack
+    notes: "Half the RAM of the nRF52840 — keyword-spotting territory."
+
+  - id: xiao-nrf52840
+    name: Seeed XIAO nRF52840 Sense
+    chip: nRF52840 (Cortex-M4F @ 64 MHz)
+    sram: 262144        # 256 KB
+    flash: 1048576      # 1 MB
+    reserved_sram: 49152   # SoftDevice BLE stack
+    notes: "Tiny board with mic + IMU; popular for wearable TinyML."
+
+  - id: wio-terminal
+    name: Seeed Wio Terminal
+    chip: SAMD51P19 (Cortex-M4F @ 120 MHz)
+    sram: 196608        # 192 KB
+    flash: 524288       # 512 KB internal (+4 MB external SPI)
+    reserved_sram: 32768   # display + RTL8720 network co-processor glue
+    notes: "Built-in screen and buttons — great for interactive ML demos."
+
+  - id: sparkfun-edge
+    name: SparkFun Edge
+    chip: Apollo3 Blue (Cortex-M4F @ 48 MHz)
+    sram: 393216        # 384 KB
+    flash: 1048576      # 1 MB
+    reserved_sram: 16384
+    notes: "The original TinyML book board; ultra-low-power (~1 mW inference)."
+
+  - id: bluepill
+    name: STM32F103 "Blue Pill"
+    chip: STM32F103C8 (Cortex-M3 @ 72 MHz)
+    sram: 20480         # 20 KB
+    flash: 65536        # 64 KB (many clones ship 128 KB)
+    reserved_sram: 4096
+    notes: "The $2 legend. No FPU, 20 KB RAM — only the tiniest models apply."
+
+  - id: mega2560
+    name: Arduino Mega 2560
+    chip: ATmega2560 (AVR @ 16 MHz)
+    sram: 8192          # 8 KB
+    flash: 262144       # 256 KB
+    reserved_sram: 1024
+    notes: "Lots of pins, still almost no RAM. 4x the Uno, 30x too little for most models."
+
+  - id: esp32-cam
+    name: ESP32-CAM (AI-Thinker)
+    chip: ESP32 (Xtensa LX6 dual-core @ 240 MHz)
+    sram: 532480        # 520 KB
+    flash: 4194304      # 4 MB
+    reserved_sram: 262144  # camera driver + frame buffers on top of Wi-Fi
+    psram: 4194304      # 4 MB
+    notes: "The $6 vision board. Camera frame buffers live in PSRAM."
+
+  - id: m5stack-core2
+    name: M5Stack Core2
+    chip: ESP32-D0WDQ6-V3 (Xtensa LX6 dual-core @ 240 MHz)
+    sram: 532480        # 520 KB
+    flash: 16777216     # 16 MB
+    reserved_sram: 204800
+    psram: 8388608      # 8 MB
+    notes: "ESP32 with screen, battery, and case — demo-ready out of the box."
+
+  - id: microbit-v2
+    name: BBC micro:bit v2
+    chip: nRF52833 (Cortex-M4F @ 64 MHz)
+    sram: 131072        # 128 KB
+    flash: 524288       # 512 KB
+    reserved_sram: 32768   # SoftDevice + micro:bit runtime
+    notes: "The classroom classic; runs small audio/gesture models fine."

@@ -1,9 +1,4 @@
-"""The core service: combines a parsed model, an estimator, and a board
-into a fit verdict with actionable suggestions.
-
-Depends only on the ArenaEstimator and BoardRepository abstractions
-(dependency inversion) — concrete implementations are wired in the CLI.
-"""
+"""Turns a parsed model + target board into a fit verdict with suggestions."""
 
 from __future__ import annotations
 

@@ -11,6 +11,10 @@ from ..domain.board import Board
 from .base import UnknownBoardError
 
 
+class BoardDataError(Exception):
+    """Raised when the board database contains an invalid entry."""
+
+
 class YamlBoardRepository:
     """BoardRepository implementation backed by a YAML file.
 
@@ -41,15 +45,35 @@ class YamlBoardRepository:
                 raw = yaml.safe_load(data.read_text())
             self._boards = {}
             for entry in raw.get("boards", []):
-                board = Board(
-                    id=entry["id"],
-                    name=entry["name"],
-                    chip=entry["chip"],
-                    sram_bytes=int(entry["sram"]),
-                    flash_bytes=int(entry["flash"]),
-                    reserved_sram_bytes=int(entry.get("reserved_sram", 0)),
-                    psram_bytes=int(entry.get("psram", 0)),
-                    notes=entry.get("notes", ""),
-                )
+                board = self._validate(entry)
+                if board.id in self._boards:
+                    raise BoardDataError(f"duplicate board id '{board.id}'")
                 self._boards[board.id] = board
         return self._boards
+
+    @staticmethod
+    def _validate(entry: dict) -> Board:
+        for key in ("id", "name", "chip", "sram", "flash"):
+            if key not in entry:
+                raise BoardDataError(
+                    f"board entry {entry.get('id', entry)!r} is missing '{key}'"
+                )
+        board = Board(
+            id=str(entry["id"]),
+            name=str(entry["name"]),
+            chip=str(entry["chip"]),
+            sram_bytes=int(entry["sram"]),
+            flash_bytes=int(entry["flash"]),
+            reserved_sram_bytes=int(entry.get("reserved_sram", 0)),
+            psram_bytes=int(entry.get("psram", 0)),
+            notes=str(entry.get("notes", "")),
+        )
+        if board.id != board.id.lower() or " " in board.id:
+            raise BoardDataError(f"board id '{board.id}' must be lowercase with no spaces")
+        if board.sram_bytes <= 0 or board.flash_bytes <= 0:
+            raise BoardDataError(f"board '{board.id}' must have positive sram and flash")
+        if board.reserved_sram_bytes >= board.sram_bytes:
+            raise BoardDataError(
+                f"board '{board.id}' reserves more RAM than it has"
+            )
+        return board

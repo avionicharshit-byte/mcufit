@@ -1,9 +1,5 @@
-"""Estimator abstraction.
-
-The static analyzer is the default implementation. A future measurement
-mode (running the real TFLM interpreter compiled for the host) plugs in
-here without touching any other layer.
-"""
+"""Estimator interface. Static analysis today; host-compiled TFLM
+measurement will be an alternate implementation."""
 
 from __future__ import annotations
 
