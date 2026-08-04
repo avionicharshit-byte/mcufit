@@ -2,6 +2,9 @@
 
 **Check if an AI model fits on a microcontroller — before you flash it.**
 
+**🌐 Try it in your browser — no install:** https://avionicharshit-byte.github.io/mcufit/
+(drag in a `.tflite`, pick a board, get the verdict; your model never leaves your device)
+
 You trained a model. You have a board. Will it run, or will it crash with a
 cryptic allocation failure after an hour of toolchain setup? Today the
 official answer from the TensorFlow Lite Micro docs is that arena size
@@ -82,7 +85,7 @@ welcome.
 - [ ] ONNX model support
 - [ ] Latency estimation per board
 - [ ] GitHub Action (`mcufit-action`) to guard model size in CI
-- [ ] Web UI: pick a board, see what fits
+- [x] Web UI: [mcufit in the browser](https://avionicharshit-byte.github.io/mcufit/) — same package, running via Pyodide
 
 ## Why this exists
 
