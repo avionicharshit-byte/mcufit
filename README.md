@@ -95,8 +95,18 @@ welcome.
 Pre-deployment arena estimation has been requested in the TensorFlow repos
 since [2019](https://github.com/tensorflow/tensorflow/issues/35070)
 ([and again in 2024](https://github.com/tensorflow/tflite-micro/issues/2474))
-and never shipped. Vendor tools (STM32Cube.AI, eIQ, ...) answer it only for
-their own silicon. `mcufit` is the neutral, open version.
+and never shipped. In a TFLM maintainer's
+[own words](https://github.com/tensorflow/tflite-micro/issues/2474#issuecomment-2015406610)
+(March 2024):
+
+> "We don't have a python based tool for determining arena size, but we do
+> have a C++ one. [...] This would be fairly easy to estimate via Python.
+> However, there are additional allocations from each operator [...]"
+
+That Python tool is what `mcufit` is — including a labelled safety margin
+for exactly those per-operator allocations, until measurement mode makes
+them exact. Vendor tools (STM32Cube.AI, eIQ, ...) answer the question only
+for their own silicon; `mcufit` is the neutral, open version.
 
 ## License
 

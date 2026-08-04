@@ -6,7 +6,7 @@
   <title>mcufit — will your AI model fit your microcontroller?</title>
   <meta name="description" content="Drop a .tflite model, pick a board, get an instant fit verdict. Runs entirely in your browser — your model never leaves your device.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📟</text></svg>">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=0.1.2">
 </head>
 <body>
   <header>
@@ -32,7 +32,7 @@
         </div>
         <div class="side-controls">
           <button id="example-btn" class="secondary">Try example model<br><small>(person detection, 294 KB)</small></button>
-          <label for="board-select">Target board</label>
+          <label for="board-select" id="board-label">Target board</label>
           <select id="board-select"></select>
         </div>
       </div>
@@ -61,10 +61,14 @@
 
   <footer>
     <p>Prefer the terminal? <code>pip install mcufit</code> gives you <code>check</code>, <code>compare</code>, <code>inspect</code> and CI-friendly JSON output.</p>
+    <blockquote class="why-quote">
+      "We don't have a python based tool for determining arena size […] This would be fairly easy to estimate via Python."
+      <cite>— <a href="https://github.com/tensorflow/tflite-micro/issues/2474#issuecomment-2015406610">TFLite Micro maintainer, March 2024</a>. So we built it.</cite>
+    </blockquote>
     <p>MIT licensed · built because arena sizing "<a href="https://github.com/tensorflow/tensorflow/issues/35070">may need to be determined by experimentation</a>" wasn't a good enough answer.</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=0.1.2"></script>
 </body>
 </html>

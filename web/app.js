@@ -96,6 +96,7 @@ async function boot() {
 function populateBoards() {
   const boards = JSON.parse(pyodide.runPython("list_boards()"));
   const select = el("board-select");
+  el("board-label").textContent = `Target board (${boards.length} in database)`;
   for (const b of boards) {
     const opt = document.createElement("option");
     opt.value = b.id;

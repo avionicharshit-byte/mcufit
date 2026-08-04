@@ -113,6 +113,8 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; }
 tr.highlight { background: rgba(88, 166, 255, 0.08); }
 
 footer { text-align: center; color: var(--dim); font-size: 0.85rem; margin-top: 2rem; }
+.why-quote { max-width: 560px; margin: 1.2rem auto; padding: 0.8rem 1.2rem; border-left: 3px solid var(--accent); text-align: left; font-style: italic; }
+.why-quote cite { display: block; margin-top: 0.4rem; font-style: normal; }
 footer a { color: var(--accent); }
 footer p { margin: 0.4rem 0; }
 
