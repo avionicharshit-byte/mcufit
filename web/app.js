@@ -2,7 +2,7 @@
  * Pyodide. The model file is written to the in-browser filesystem and
  * analyzed there; nothing is uploaded anywhere. */
 
-const MCUFIT_VERSION = "0.1.2";
+const MCUFIT_VERSION = "0.1.3";
 
 const el = (id) => document.getElementById(id);
 const fmt = (bytes) => {
@@ -25,7 +25,7 @@ _parser = TFLiteModelParser()
 
 def list_boards():
     return json.dumps([
-        {"id": b.id, "name": b.name, "chip": b.chip,
+        {"id": b.id, "name": b.name, "chip": b.chip, "vendor": b.vendor,
          "usable_sram": b.usable_sram_bytes, "flash": b.flash_bytes,
          "psram": b.psram_bytes}
         for b in _repo.list()
@@ -97,11 +97,25 @@ function populateBoards() {
   const boards = JSON.parse(pyodide.runPython("list_boards()"));
   const select = el("board-select");
   el("board-label").textContent = `Target board (${boards.length} in database)`;
+
+  const groups = new Map();
   for (const b of boards) {
-    const opt = document.createElement("option");
-    opt.value = b.id;
-    opt.textContent = `${b.name} — ${fmt(b.usable_sram)} SRAM`;
-    select.appendChild(opt);
+    if (!groups.has(b.vendor)) groups.set(b.vendor, []);
+    groups.get(b.vendor).push(b);
+  }
+  const vendors = [...groups.keys()].sort((a, b) =>
+    a === "Other" ? 1 : b === "Other" ? -1 : a.localeCompare(b));
+
+  for (const vendor of vendors) {
+    const optgroup = document.createElement("optgroup");
+    optgroup.label = vendor;
+    for (const b of groups.get(vendor).sort((a, b) => a.name.localeCompare(b.name))) {
+      const opt = document.createElement("option");
+      opt.value = b.id;
+      opt.textContent = `${b.name} — ${fmt(b.usable_sram)} SRAM`;
+      optgroup.appendChild(opt);
+    }
+    select.appendChild(optgroup);
   }
   select.value = "esp32-s3";
 }

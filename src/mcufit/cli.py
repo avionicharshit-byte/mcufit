@@ -76,15 +76,19 @@ def check(
 def boards():
     """List all boards in the database."""
     table = Table(title="mcufit board database")
+    table.add_column("vendor", style="magenta")
     table.add_column("id", style="cyan")
     table.add_column("name")
-    table.add_column("chip", style="dim")
     table.add_column("usable SRAM", justify="right")
     table.add_column("flash", justify="right")
     table.add_column("PSRAM", justify="right")
-    for b in YamlBoardRepository().list():
+    ordered = sorted(
+        YamlBoardRepository().list(),
+        key=lambda b: (b.vendor == "Other", b.vendor.lower(), b.name.lower()),
+    )
+    for b in ordered:
         table.add_row(
-            b.id, b.name, b.chip,
+            b.vendor, b.id, b.name,
             _fmt(b.usable_sram_bytes), _fmt(b.flash_bytes),
             _fmt(b.psram_bytes) if b.psram_bytes else "—",
         )

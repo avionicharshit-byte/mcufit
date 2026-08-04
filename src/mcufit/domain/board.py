@@ -17,6 +17,7 @@ class Board:
     should reflect reality, not the datasheet."""
     psram_bytes: int = 0
     notes: str = ""
+    vendor: str = "Other"
 
     @property
     def usable_sram_bytes(self) -> int:

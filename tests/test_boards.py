@@ -37,6 +37,15 @@ def test_every_board_has_identity_fields(boards):
         assert b.chip.strip(), b.id
 
 
+def test_vendors_stay_curated(boards):
+    # The web dropdown groups by vendor; keep the group list small on purpose.
+    vendors = {b.vendor for b in boards}
+    assert vendors <= {
+        "Arduino", "Espressif", "Raspberry Pi", "STM32",
+        "Seeed Studio", "Teensy", "Other",
+    }
+
+
 def test_known_families_are_present(boards):
     ids = {b.id for b in boards}
     for expected in ("esp32", "esp32-s3", "rp2040", "stm32f411", "teensy41", "uno-r4"):

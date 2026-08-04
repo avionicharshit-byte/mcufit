@@ -6,6 +6,7 @@
 
 boards:
   - id: esp32
+    vendor: Espressif
     name: ESP32 DevKit
     chip: ESP32 (Xtensa LX6 dual-core @ 240 MHz)
     sram: 532480        # 520 KB
@@ -14,6 +15,7 @@ boards:
     notes: "Classic ESP32. Reserve grows if Wi-Fi and Bluetooth run together."
 
   - id: esp32-s3
+    vendor: Espressif
     name: ESP32-S3 DevKit
     chip: ESP32-S3 (Xtensa LX7 dual-core @ 240 MHz, vector instructions)
     sram: 524288        # 512 KB
@@ -23,6 +25,7 @@ boards:
     notes: "Best ESP32 for ML: vector ISA + optional 8 MB PSRAM for big arenas."
 
   - id: esp32-c3
+    vendor: Espressif
     name: ESP32-C3 DevKit
     chip: ESP32-C3 (RISC-V single-core @ 160 MHz)
     sram: 409600        # 400 KB
@@ -31,6 +34,7 @@ boards:
     notes: "Budget RISC-V part; fine for small int8 models."
 
   - id: rp2040
+    vendor: Raspberry Pi
     name: Raspberry Pi Pico
     chip: RP2040 (Cortex-M0+ dual-core @ 133 MHz)
     sram: 270336        # 264 KB
@@ -39,6 +43,7 @@ boards:
     notes: "No FPU — float32 models run painfully slowly; quantize to int8."
 
   - id: rp2350
+    vendor: Raspberry Pi
     name: Raspberry Pi Pico 2
     chip: RP2350 (Cortex-M33 dual-core @ 150 MHz)
     sram: 532480        # 520 KB
@@ -47,6 +52,7 @@ boards:
     notes: "FPU + DSP extensions; solid TinyML target."
 
   - id: stm32f411
+    vendor: STM32
     name: STM32F411 "BlackPill"
     chip: STM32F411CE (Cortex-M4F @ 100 MHz)
     sram: 131072        # 128 KB
@@ -55,6 +61,7 @@ boards:
     notes: "Popular hobby board; tight RAM, good for keyword-spotting size models."
 
   - id: stm32f746
+    vendor: STM32
     name: STM32F746 Discovery
     chip: STM32F746NG (Cortex-M7 @ 216 MHz)
     sram: 327680        # 320 KB
@@ -63,6 +70,7 @@ boards:
     notes: "Common TinyML benchmark board (MLPerf Tiny)."
 
   - id: stm32h743
+    vendor: STM32
     name: STM32H743 Nucleo
     chip: STM32H743ZI (Cortex-M7 @ 480 MHz)
     sram: 1048576       # 1 MB total (512 KB AXI + banks)
@@ -71,6 +79,7 @@ boards:
     notes: "One of the roomiest Cortex-M targets for on-device ML."
 
   - id: nano33ble
+    vendor: Arduino
     name: Arduino Nano 33 BLE Sense
     chip: nRF52840 (Cortex-M4F @ 64 MHz)
     sram: 262144        # 256 KB
@@ -79,6 +88,7 @@ boards:
     notes: "The original TinyML course board; onboard mic + IMU."
 
   - id: teensy41
+    vendor: Teensy
     name: Teensy 4.1
     chip: i.MX RT1062 (Cortex-M7 @ 600 MHz)
     sram: 1048576       # 1 MB (512 KB TCM + 512 KB OCRAM)
@@ -87,6 +97,7 @@ boards:
     notes: "Fastest common MCU board; great for audio ML."
 
   - id: xiao-esp32s3
+    vendor: Seeed Studio
     name: Seeed XIAO ESP32S3 Sense
     chip: ESP32-S3 (Xtensa LX7 dual-core @ 240 MHz)
     sram: 524288        # 512 KB
@@ -96,6 +107,7 @@ boards:
     notes: "Thumb-sized S3 with camera + mic — a favorite for vision demos."
 
   - id: uno
+    vendor: Arduino
     name: Arduino Uno R3
     chip: ATmega328P (AVR @ 16 MHz)
     sram: 2048          # 2 KB
@@ -104,6 +116,7 @@ boards:
     notes: "Spoiler: your model does not fit. Included so the tool can prove it."
 
   - id: esp32-s2
+    vendor: Espressif
     name: ESP32-S2 DevKit
     chip: ESP32-S2 (Xtensa LX7 single-core @ 240 MHz)
     sram: 327680        # 320 KB
@@ -112,6 +125,7 @@ boards:
     notes: "Single core, Wi-Fi only (no BT); optional PSRAM on some modules."
 
   - id: esp32-c6
+    vendor: Espressif
     name: ESP32-C6 DevKit
     chip: ESP32-C6 (RISC-V @ 160 MHz)
     sram: 524288        # 512 KB HP SRAM
@@ -120,6 +134,7 @@ boards:
     notes: "Wi-Fi 6 + BLE + 802.15.4 (Thread/Zigbee)."
 
   - id: esp32-p4
+    vendor: Espressif
     name: ESP32-P4 DevKit
     chip: ESP32-P4 (RISC-V dual-core @ 400 MHz)
     sram: 786432        # 768 KB HP SRAM
@@ -129,6 +144,7 @@ boards:
     notes: "Espressif's compute flagship: no radio, AI instruction extensions."
 
   - id: esp8266
+    vendor: Espressif
     name: ESP8266 NodeMCU
     chip: ESP8266 (Xtensa L106 @ 80 MHz)
     sram: 81920         # ~80 KB user RAM
@@ -137,6 +153,7 @@ boards:
     notes: "Legacy but everywhere. Only the tiniest int8 models are realistic."
 
   - id: pico-w
+    vendor: Raspberry Pi
     name: Raspberry Pi Pico W
     chip: RP2040 (Cortex-M0+ dual-core @ 133 MHz)
     sram: 270336        # 264 KB
@@ -145,6 +162,7 @@ boards:
     notes: "Same silicon as the Pico; the Wi-Fi stack eats ~32 KB extra RAM."
 
   - id: teensy40
+    vendor: Teensy
     name: Teensy 4.0
     chip: i.MX RT1062 (Cortex-M7 @ 600 MHz)
     sram: 1048576       # 1 MB
@@ -153,6 +171,7 @@ boards:
     notes: "Teensy 4.1 minus the big flash and PSRAM pads."
 
   - id: nano33iot
+    vendor: Arduino
     name: Arduino Nano 33 IoT
     chip: SAMD21G18 (Cortex-M0+ @ 48 MHz)
     sram: 32768         # 32 KB
@@ -161,6 +180,7 @@ boards:
     notes: "No FPU and little RAM — micro-models only."
 
   - id: uno-r4
+    vendor: Arduino
     name: Arduino Uno R4
     chip: RA4M1 (Cortex-M4 @ 48 MHz)
     sram: 32768         # 32 KB
@@ -169,6 +189,7 @@ boards:
     notes: "The modern Uno. 16x the RAM of the R3, still tight for ML."
 
   - id: portenta-h7
+    vendor: Arduino
     name: Arduino Portenta H7
     chip: STM32H747XI (Cortex-M7 @ 480 MHz + M4 @ 240 MHz)
     sram: 1048576       # 1 MB on-chip
@@ -178,6 +199,7 @@ boards:
     notes: "Arduino's pro board; 8 MB SDRAM for big arenas."
 
   - id: stm32f407-disco
+    vendor: STM32
     name: STM32F407 Discovery
     chip: STM32F407VG (Cortex-M4F @ 168 MHz)
     sram: 196608        # 192 KB (128 KB SRAM + 64 KB CCM)
@@ -186,6 +208,7 @@ boards:
     notes: "Classic student board. 64 KB of the RAM is CCM (no DMA access)."
 
   - id: nrf52832
+    vendor: Other
     name: nRF52832 DK
     chip: nRF52832 (Cortex-M4F @ 64 MHz)
     sram: 65536         # 64 KB
@@ -194,6 +217,7 @@ boards:
     notes: "Half the RAM of the nRF52840 — keyword-spotting territory."
 
   - id: xiao-nrf52840
+    vendor: Seeed Studio
     name: Seeed XIAO nRF52840 Sense
     chip: nRF52840 (Cortex-M4F @ 64 MHz)
     sram: 262144        # 256 KB
@@ -202,6 +226,7 @@ boards:
     notes: "Tiny board with mic + IMU; popular for wearable TinyML."
 
   - id: wio-terminal
+    vendor: Seeed Studio
     name: Seeed Wio Terminal
     chip: SAMD51P19 (Cortex-M4F @ 120 MHz)
     sram: 196608        # 192 KB
@@ -210,6 +235,7 @@ boards:
     notes: "Built-in screen and buttons — great for interactive ML demos."
 
   - id: sparkfun-edge
+    vendor: Other
     name: SparkFun Edge
     chip: Apollo3 Blue (Cortex-M4F @ 48 MHz)
     sram: 393216        # 384 KB
@@ -218,6 +244,7 @@ boards:
     notes: "The original TinyML book board; ultra-low-power (~1 mW inference)."
 
   - id: bluepill
+    vendor: STM32
     name: STM32F103 "Blue Pill"
     chip: STM32F103C8 (Cortex-M3 @ 72 MHz)
     sram: 20480         # 20 KB
@@ -226,6 +253,7 @@ boards:
     notes: "The $2 legend. No FPU, 20 KB RAM — only the tiniest models apply."
 
   - id: mega2560
+    vendor: Arduino
     name: Arduino Mega 2560
     chip: ATmega2560 (AVR @ 16 MHz)
     sram: 8192          # 8 KB
@@ -234,6 +262,7 @@ boards:
     notes: "Lots of pins, still almost no RAM. 4x the Uno, 30x too little for most models."
 
   - id: esp32-cam
+    vendor: Espressif
     name: ESP32-CAM (AI-Thinker)
     chip: ESP32 (Xtensa LX6 dual-core @ 240 MHz)
     sram: 532480        # 520 KB
@@ -243,6 +272,7 @@ boards:
     notes: "The $6 vision board. Camera frame buffers live in PSRAM."
 
   - id: m5stack-core2
+    vendor: Espressif
     name: M5Stack Core2
     chip: ESP32-D0WDQ6-V3 (Xtensa LX6 dual-core @ 240 MHz)
     sram: 532480        # 520 KB
@@ -252,6 +282,7 @@ boards:
     notes: "ESP32 with screen, battery, and case — demo-ready out of the box."
 
   - id: microbit-v2
+    vendor: Other
     name: BBC micro:bit v2
     chip: nRF52833 (Cortex-M4F @ 64 MHz)
     sram: 131072        # 128 KB
