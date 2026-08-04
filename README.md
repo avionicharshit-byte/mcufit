@@ -1,5 +1,9 @@
 # mcufit
 
+[![PyPI](https://img.shields.io/pypi/v/mcufit)](https://pypi.org/project/mcufit/)
+[![CI](https://github.com/avionicharshit-byte/mcufit/actions/workflows/ci.yml/badge.svg)](https://github.com/avionicharshit-byte/mcufit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 **Check if an AI model fits on a microcontroller — before you flash it.**
 
 <p align="center">
@@ -73,10 +77,17 @@ zero hardware — is the next milestone on the roadmap.
 
 ## Supported boards
 
-ESP32, ESP32-S3, ESP32-C3, Raspberry Pi Pico (RP2040), Pico 2 (RP2350),
-STM32F411 BlackPill, STM32F746 Discovery, STM32H743 Nucleo, Arduino Nano 33
-BLE Sense, Teensy 4.1, Seeed XIAO ESP32S3 Sense, and the Arduino Uno (so
-the tool can politely tell you *no*).
+31 boards across 7 vendor groups (run `mcufit boards` for the full table):
+
+| Vendor | Boards |
+|---|---|
+| Arduino | Uno R3/R4, Mega 2560, Nano 33 BLE Sense, Nano 33 IoT, Portenta H7 |
+| Espressif | ESP32, S2, S3, C3, C6, P4, ESP8266, ESP32-CAM, M5Stack Core2 |
+| Raspberry Pi | Pico, Pico W, Pico 2 |
+| STM32 | F103 Blue Pill, F411 BlackPill, F407 Discovery, F746 Discovery, H743 Nucleo |
+| Seeed Studio | XIAO ESP32S3 Sense, XIAO nRF52840 Sense, Wio Terminal |
+| Teensy | 4.0, 4.1 |
+| Other | SparkFun Edge, BBC micro:bit v2, nRF52832 DK |
 
 **Adding a board is a 10-line PR** to
 [`boards.yaml`](src/mcufit/boards/data/boards.yaml) — contributions very
