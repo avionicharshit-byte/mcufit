@@ -3,7 +3,7 @@ name: Deploy web to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ["web/**", ".github/workflows/deploy-web.yml"]
+    paths: ["web/**", "src/**", "pyproject.toml", ".github/workflows/deploy-web.yml"]
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # The site installs mcufit from its own origin instead of PyPI, so the
+      # deployed page always runs exactly the code in this commit.
+      - run: |
+          pip install build
+          python -m build --wheel --outdir web/wheels
+          python -c "import json, pathlib; w = next(pathlib.Path('web/wheels').glob('*.whl')); pathlib.Path('web/wheels/manifest.json').write_text(json.dumps({'wheel': w.name}))"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

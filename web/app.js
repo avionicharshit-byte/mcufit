@@ -1,8 +1,8 @@
-/* mcufit web — runs the published mcufit Python package in the browser via
- * Pyodide. The model file is written to the in-browser filesystem and
- * analyzed there; nothing is uploaded anywhere. */
-
-const MCUFIT_VERSION = "0.1.3";
+/* mcufit web — runs the mcufit Python package in the browser via Pyodide.
+ * The wheel is built from this repo at deploy time and served from this
+ * site's own origin (web/wheels/), so page and package can never drift.
+ * The model file is analyzed in the in-browser filesystem; nothing is
+ * uploaded anywhere. */
 
 const el = (id) => document.getElementById(id);
 const fmt = (bytes) => {
@@ -81,7 +81,8 @@ async function boot() {
     await pyodide.loadPackage("micropip");
     const micropip = pyodide.pyimport("micropip");
     await micropip.install(["tflite", "pyyaml", "numpy"]);
-    await micropip.install(`mcufit==${MCUFIT_VERSION}`, { deps: false });
+    const manifest = await (await fetch("wheels/manifest.json", { cache: "no-cache" })).json();
+    await micropip.install(new URL(`wheels/${manifest.wheel}`, location.href).href, { deps: false });
     pyodide.runPython(PY_SETUP);
     populateBoards();
     el("status").hidden = true;
