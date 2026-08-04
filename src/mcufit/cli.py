@@ -13,7 +13,13 @@ from .analysis.fit_checker import FitChecker
 from .boards.base import UnknownBoardError
 from .boards.yaml_repo import YamlBoardRepository
 from .domain.model import ModelInfo
+from .estimation.base import ArenaEstimator
 from .estimation.greedy import GreedyLifetimeEstimator
+from .estimation.measured import (
+    MeasuredArenaEstimator,
+    MeasurementUnavailableError,
+    find_benchmark_binary,
+)
 from .parsing.base import ModelParseError
 from .parsing.tflite_parser import TFLiteModelParser
 from .reporting.json_renderer import JsonReportRenderer
@@ -39,8 +45,21 @@ def _parse_model(model_path: Path) -> ModelInfo:
         raise typer.Exit(2)
 
 
-def _checker() -> FitChecker:
-    return FitChecker(estimator=GreedyLifetimeEstimator(), boards=YamlBoardRepository())
+def _estimator(exact: bool) -> ArenaEstimator:
+    if not exact:
+        return GreedyLifetimeEstimator()
+    binary = find_benchmark_binary()
+    if binary is None:
+        console.print(
+            "[red]Exact mode needs the TFLM benchmark binary.[/red] "
+            "Run [bold]mcufit setup-exact[/bold] once to build it (~5 min)."
+        )
+        raise typer.Exit(2)
+    return MeasuredArenaEstimator(binary=binary)
+
+
+def _checker(exact: bool = False) -> FitChecker:
+    return FitChecker(estimator=_estimator(exact), boards=YamlBoardRepository())
 
 
 def _fmt(size: int) -> str:
@@ -56,17 +75,22 @@ def check(
     model: Path = typer.Argument(..., exists=True, readable=True, help="Path to a .tflite model"),
     board: str = typer.Option(..., "--board", "-b", help="Target board id (see `mcufit boards`)"),
     json_output: bool = typer.Option(False, "--json", help="Emit machine-readable JSON (for CI)"),
+    exact: bool = typer.Option(False, "--exact", "-x", help="Measure with the real TFLM runtime (needs `mcufit setup-exact`)"),
 ):
     """Check whether MODEL fits on BOARD. Exit code 1 if it does not."""
     model_info = _parse_model(model)
-    checker = _checker()
+    checker = _checker(exact)
     try:
         target = YamlBoardRepository().get(board)
     except UnknownBoardError as exc:
         console.print(f"[red]Unknown board '{exc.board_id}'.[/red] Known boards: {', '.join(exc.known)}")
         raise typer.Exit(2)
 
-    report = checker.check(model_info, target)
+    try:
+        report = checker.check(model_info, target)
+    except MeasurementUnavailableError as exc:
+        console.print(f"[red]{exc}[/red]")
+        raise typer.Exit(2)
     renderer = JsonReportRenderer() if json_output else RichReportRenderer(console)
     renderer.render(report)
     raise typer.Exit(0 if report.fits else 1)
@@ -135,10 +159,11 @@ def inspect(
 @app.command()
 def compare(
     model: Path = typer.Argument(..., exists=True, readable=True, help="Path to a .tflite model"),
+    exact: bool = typer.Option(False, "--exact", "-x", help="Measure with the real TFLM runtime"),
 ):
     """Check MODEL against every board in the database."""
     model_info = _parse_model(model)
-    reports = _checker().check_all(model_info)
+    reports = _checker(exact).check_all(model_info)
 
     table = Table(title=f"{model_info.path.name} — fit across boards")
     table.add_column("board", style="cyan")
@@ -154,6 +179,27 @@ def compare(
             verdict,
         )
     console.print(table)
+
+
+@app.command("setup-exact")
+def setup_exact():
+    """Build the TFLM runtime for exact measurement mode (one-time, ~5 min)."""
+    from .estimation.tflm_build import SetupError, build_benchmark
+
+    existing = find_benchmark_binary()
+    if existing:
+        console.print(f"[green]Already set up:[/green] {existing}")
+        return
+
+    log = Path.home() / ".cache" / "mcufit" / "build.log"
+    console.print("Cloning and building tflite-micro — this takes a few minutes...")
+    try:
+        with console.status("compiling"):
+            binary = build_benchmark(log=log)
+    except SetupError as exc:
+        console.print(f"[red]{exc}[/red]")
+        raise typer.Exit(2)
+    console.print(f"[green]Done:[/green] {binary}\nUse it with: mcufit check model.tflite -b esp32-s3 --exact")
 
 
 def main() -> None:

@@ -48,6 +48,8 @@ pip install mcufit
 | Command | What it does |
 |---|---|
 | `mcufit check model.tflite -b esp32-s3` | Fit verdict for one board (exit code 1 if it doesn't fit — CI-friendly) |
+| `mcufit check model.tflite -b esp32-s3 --exact` | Same, measured by the real TFLM runtime (see Exact mode) |
+| `mcufit setup-exact` | One-time build of the TFLM runtime for `--exact` |
 | `mcufit check model.tflite -b rp2040 --json` | Same, as JSON for scripts and CI |
 | `mcufit compare model.tflite` | Verdict matrix across every board in the database |
 | `mcufit inspect model.tflite` | Layer-by-layer memory profile — see *where* the peak is |
@@ -71,9 +73,22 @@ SRAM simultaneously. `mcufit`:
 4. **Compares** against a curated board database that accounts for the RAM
    your RTOS/Wi-Fi stack already eats before your app gets any.
 
-A *measurement mode* — running your model through the real TFLM interpreter
-compiled for your host machine, for exact-to-the-byte arena numbers with
-zero hardware — is the next milestone on the roadmap.
+## Exact mode
+
+Static analysis is instant but approximate. For exact-to-the-byte numbers,
+`mcufit` can run your model through the **real TFLite Micro interpreter
+compiled for your machine** and read the recorded allocations — the same
+numbers the device would report, with zero hardware:
+
+```
+mcufit setup-exact                                  # one-time build (~5 min)
+mcufit check model.tflite -b esp32-s3 --exact       # measured, not estimated
+```
+
+On the person-detection reference model: static analysis estimates ~74 KB,
+exact mode measures 89,248 bytes — the difference is per-operator buffers
+that only the real runtime knows about. Requires git, a C++ toolchain, and
+GNU make >= 3.82 (`brew install make` on macOS).
 
 ## Supported boards
 
@@ -95,7 +110,7 @@ welcome.
 
 ## Roadmap
 
-- [ ] Measurement mode: exact arena numbers via host-compiled TFLM
+- [x] Exact mode: measured arena numbers via host-compiled TFLM (`--exact`)
 - [ ] ONNX model support
 - [ ] Latency estimation per board
 - [ ] GitHub Action (`mcufit-action`) to guard model size in CI

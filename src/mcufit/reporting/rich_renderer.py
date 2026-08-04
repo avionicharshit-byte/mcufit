@@ -75,7 +75,7 @@ class RichReportRenderer:
             f"  ({min(report.flash_utilization, 9.99):.0%})\n\n"
         )
 
-        if model.layers:
+        if model.layers and est.peak_layer_index >= 0:
             peak = model.layers[est.peak_layer_index]
             body.append(
                 f"Peak memory moment: layer {peak.index} ({peak.op_name}) — "
