@@ -40,10 +40,7 @@ class WasmArenaEstimator:
             margin_bytes=0,
             peak_layer_index=-1,
             method="tflm-wasm32-measurement",
-            caveat=(
-                "32-bit build, so overhead is close to the device's but not identical; "
-                "measured ~3% high against a real ESP32"
-            ),
+            caveat="reads ~3% high against a real ESP32, so treat it as a ceiling",
         )
 
     def _run(self, shim: Path, model_path: Path) -> str:

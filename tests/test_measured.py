@@ -32,7 +32,7 @@ def test_parses_arena_table():
 def test_host_measurement_carries_a_caveat():
     estimate = MeasuredArenaEstimator._parse(BENCHMARK_OUTPUT)
     assert estimate.caveat is not None
-    assert "upper bound" in estimate.caveat
+    assert "high" in estimate.caveat
 
 
 def test_static_estimate_carries_no_caveat():

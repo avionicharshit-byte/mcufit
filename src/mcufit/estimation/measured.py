@@ -66,8 +66,8 @@ class MeasuredArenaEstimator:
             peak_layer_index=-1,  # the benchmark reports totals, not per-layer peaks
             method="tflm-host-measurement",
             caveat=(
-                "64-bit host build: overhead runs ~8% above a 32-bit device, so this "
-                "is an upper bound. Install node for the wasm32 build, within ~3%"
+                "reads ~8% high against a real ESP32. Install node for the wasm32 "
+                "build, which reads ~3% high"
             ),
         )
 

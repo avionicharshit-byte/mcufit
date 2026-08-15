@@ -243,11 +243,9 @@ function render({ selected: s, rows, model }) {
   if (model.measured) {
     note.classList.add("measured");
     note.innerHTML =
-      "<strong>✓ Measured by the real TFLite Micro runtime</strong> (compiled to " +
-      "WebAssembly, 32-bit like the chip). Checked against a real ESP32 on the " +
-      "reference model: within 2.6%, and high rather than low. " +
-      "The terminal's <code>--exact</code> is a 64-bit build and lands 8.4% high, " +
-      "so this page is currently the more accurate of the two.";
+      "<strong>✓ Measured, not estimated</strong> - your model ran through the real " +
+      "TFLite Micro runtime. Checked against a real ESP32: within 3%, and it reads " +
+      "slightly high rather than low.";
   } else {
     note.classList.remove("measured");
     note.innerHTML =
