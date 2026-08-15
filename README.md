@@ -99,17 +99,17 @@ without node. It is the less accurate path and the CLI warns when it uses it.
 
 ## Speed
 
-Only boards measured on real hardware get a speed answer. Everything else gets
-nothing, on purpose.
+Only `esp32` and `nano33ble` have been measured on hardware. Every other board
+returns no speed number.
 
 | board | validated error |
 |---|---|
 | `esp32` | -6% to +4% |
 | `nano33ble` | -11% to +20% |
 
-Speed cannot be derived from a datasheet. Which operators a chip runs fast
-depends on which kernels its vendor happened to write, and that is published
-nowhere. Measured on the two boards above, per operator, in MACs/cycle:
+Speed is not derivable from a datasheet. Which operators run fast depends on
+which kernels the vendor wrote, and that is not documented anywhere. Measured
+per operator, in MACs/cycle:
 
 | operator | ESP32 (esp-nn) | Nano 33 BLE (CMSIS-NN) |
 |---|---|---|
@@ -117,14 +117,14 @@ nowhere. Measured on the two boards above, per operator, in MACs/cycle:
 | DEPTHWISE_CONV_2D | 0.044 | 0.063 |
 | FULLY_CONNECTED | 0.022 | 0.186 |
 
-Each chip is bad at something different. Fully-connected costs **3.2x** more
-than convolution on the ESP32, because esp-nn has no optimised kernel for it
-and it falls back to reference C. On the nRF52840 fully-connected is fine and
-**depthwise** is the weak one, at 3.3x. Nothing warns you either way.
+Each chip is slow at a different operator. On the ESP32 fully-connected costs
+3.2x more than convolution, because esp-nn ships no kernel for it and it falls
+back to reference C. On the nRF52840 fully-connected is fine and depthwise is
+the slow one, at 3.3x.
 
-Earlier versions guessed a single `macs_per_cycle` per board. Those guesses
-were wrong by up to 3.2x and ranked the two chips backwards, so they have been
-deleted rather than improved. Numbers come from
+Before this, every board carried a hand-written `macs_per_cycle`. Those were
+wrong by up to 3.2x and ranked the two chips the wrong way round. They are
+gone. Numbers come from
 [mcufit-bench](https://github.com/avionicharshit-byte/mcufit-bench).
 
 ## Guard your model in CI
