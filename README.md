@@ -59,49 +59,43 @@ mcufit check model.tflite --board esp32-s3
 ## Exact mode
 
 Static analysis is instant but approximate - real runtimes allocate
-per-operator working memory no file analysis can see. Exact mode compiles
-the actual TFLite Micro interpreter for your machine and reads its
-recorded allocations:
+per-operator working memory no file analysis can see. Exact mode runs your
+model through the actual TFLite Micro interpreter and reads its recorded
+allocations:
 
 ```bash
-mcufit setup-exact                              # one-time (needs git, C++, gmake)
-mcufit check model.tflite -b esp32-s3 --exact   # measured on this machine
+mcufit check model.tflite -b esp32-s3 --exact   # needs node, nothing to build
 ```
 
-On the person-detection reference model: estimate ~74 KB → measured
-**89,248 bytes**. The website does the same trick with TFLM compiled to
-WebAssembly.
+The interpreter ships in the wheel, compiled to wasm32 and run under node.
+There is no setup step and no compiler. On the person-detection reference
+model: estimate ~74 KB → measured **84,428 bytes**.
 
-### What "exact" does and does not mean
-
-Only half of the arena is portable, and this used to be overclaimed.
+### How close it gets
 
 Activation tensors come straight from the model, so their size is identical
-everywhere and the measurement is genuinely exact. The interpreter's own
-bookkeeping is full of pointers, so a 64-bit host build needs more of it than
-a 32-bit microcontroller does.
+everywhere and that half of the number is exact. The interpreter's own
+bookkeeping is full of pointers, so its size follows the pointer width of
+whatever the interpreter was compiled for.
 
-Measured on a real ESP32-D0WDQ6 at 240 MHz, person_detect, against both of
-mcufit's own builds
+Measured against a real ESP32-D0WDQ6 at 240 MHz, person_detect
 ([mcufit-bench](https://github.com/avionicharshit-byte/mcufit-bench),
 2026-08-16):
 
-| arena section | CLI, host arm64 | browser, wasm32 | real device |
+| arena section | host build, 64-bit | wasm32 | real device |
 |---|---|---|---|
 | activations | 55,296 | 55,296 | 55,296 |
 | interpreter overhead | 33,952 | 29,132 | 27,004 |
 | **total** | **89,248** | **84,428** | **82,300** |
 | error vs device | +8.4% | +2.6% | - |
 
-Pointer width is the whole story. The 64-bit CLI build needs 6,948 bytes more
-bookkeeping than the chip does; going 32-bit recovers most of it, and what
-remains is struct padding that differs from Xtensa.
+wasm32 is 32-bit like the chip, which is why `--exact` uses it. What is left
+is struct padding that differs from Xtensa. It reads high rather than low,
+which is the safe direction for a fit check, but it is not the device's exact
+number and the tool says so in its output.
 
-Both over-report, which is the safe direction for a fit check, but neither is
-the device's number and the tool no longer claims otherwise. **The browser
-version is currently three times more accurate than `--exact` in the
-terminal.** Fixing that means having the CLI run the same wasm32 build the
-website already ships.
+`mcufit setup-exact` still builds the native 64-bit interpreter, for machines
+without node. It is the less accurate path and the CLI warns when it uses it.
 
 ## Guard your model in CI
 

@@ -20,6 +20,7 @@ from .estimation.measured import (
     MeasurementUnavailableError,
     find_benchmark_binary,
 )
+from .estimation.wasm import WasmArenaEstimator, node_executable
 from .parsing.base import ModelParseError
 from .parsing.tflite_parser import TFLiteModelParser
 from .reporting.json_renderer import JsonReportRenderer
@@ -50,14 +51,21 @@ def _parse_model(model_path: Path) -> ModelInfo:
 def _estimator(exact: bool) -> ArenaEstimator:
     if not exact:
         return GreedyLifetimeEstimator()
+    node = node_executable()
+    if node is not None:
+        return WasmArenaEstimator(node=node)
     binary = find_benchmark_binary()
-    if binary is None:
+    if binary is not None:
         console.print(
-            "[red]Exact mode needs the TFLM benchmark binary.[/red] "
-            "Run [bold]mcufit setup-exact[/bold] once to build it (~5 min)."
+            "[yellow]node not found, using the host build:[/yellow] it is 64-bit and "
+            "reads ~8% high. Install node for the wasm32 build (~3%)."
         )
-        raise typer.Exit(2)
-    return MeasuredArenaEstimator(binary=binary)
+        return MeasuredArenaEstimator(binary=binary)
+    console.print(
+        "[red]Exact mode needs a runtime.[/red] Install [bold]node[/bold] (nothing else "
+        "to build), or run [bold]mcufit setup-exact[/bold] for the host build (~5 min)."
+    )
+    raise typer.Exit(2)
 
 
 def _checker(exact: bool = False) -> FitChecker:
@@ -77,7 +85,7 @@ def check(
     model: Path = typer.Argument(..., exists=True, readable=True, help="Path to a .tflite model"),
     board: str = typer.Option(..., "--board", "-b", help="Target board id (see `mcufit boards`)"),
     json_output: bool = typer.Option(False, "--json", help="Emit machine-readable JSON (for CI)"),
-    exact: bool = typer.Option(False, "--exact", "-x", help="Measure with the real TFLM runtime (needs `mcufit setup-exact`)"),
+    exact: bool = typer.Option(False, "--exact", "-x", help="Measure with the real TFLM runtime (needs node)"),
 ):
     """Check whether MODEL fits on BOARD. Exit code 1 if it does not."""
     if exact and model.suffix.lower() == ".onnx":
@@ -188,8 +196,15 @@ def compare(
 
 @app.command("setup-exact")
 def setup_exact():
-    """Build the TFLM runtime for exact measurement mode (one-time, ~5 min)."""
+    """Build the host TFLM runtime. Only needed when node is unavailable."""
     from .estimation.tflm_build import SetupError, build_benchmark
+
+    if node_executable():
+        console.print(
+            "[yellow]Not needed:[/yellow] node is installed, so --exact already uses "
+            "the bundled wasm32 build, which is closer to a real device than this one."
+        )
+        return
 
     existing = find_benchmark_binary()
     if existing:

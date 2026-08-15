@@ -32,6 +32,11 @@ jobs:
           pip install build
           python -m build --wheel --outdir web/wheels
           python -c "import json, pathlib; w = next(pathlib.Path('web/wheels').glob('*.whl')); pathlib.Path('web/wheels/manifest.json').write_text(json.dumps({'wheel': w.name}))"
+      # tflm.js lives in the package so the CLI can use it too; the page needs
+      # it at a real URL.
+      - run: |
+          mkdir -p web/wasm
+          cp src/mcufit/wasm/tflm.js web/wasm/tflm.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

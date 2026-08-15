@@ -21,11 +21,7 @@ class MemoryEstimate:
     peak_layer_index: int
     method: str
     caveat: str | None = None
-    """Why this number may not be what the device reports, if it may not be.
-
-    A number carrying no caveat is claiming to be the truth, so an estimator
-    that knows better must say so here.
-    """
+    """Why this number may differ from what the device reports, if it does."""
 
     @property
     def total_arena_bytes(self) -> int:
