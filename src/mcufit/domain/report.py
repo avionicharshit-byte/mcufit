@@ -20,6 +20,12 @@ class MemoryEstimate:
     """Safety margin covering op scratch buffers the static analysis can't see."""
     peak_layer_index: int
     method: str
+    caveat: str | None = None
+    """Why this number may not be what the device reports, if it may not be.
+
+    A number carrying no caveat is claiming to be the truth, so an estimator
+    that knows better must say so here.
+    """
 
     @property
     def total_arena_bytes(self) -> int:

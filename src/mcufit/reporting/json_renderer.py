@@ -40,6 +40,7 @@ class JsonReportRenderer:
                 "total_arena_bytes": est.total_arena_bytes,
                 "peak_layer_index": est.peak_layer_index,
                 "method": est.method,
+                "caveat": est.caveat,
             },
             "flash_needed_bytes": report.flash_needed_bytes,
             "macs": count_macs(report.model),

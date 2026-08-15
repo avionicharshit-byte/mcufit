@@ -96,6 +96,8 @@ class RichReportRenderer:
             f"+{_fmt(est.margin_bytes)} scratch margin)\n",
             style="dim",
         )
+        if est.caveat:
+            body.append(f"Caveat: {est.caveat}\n", style="yellow")
 
         for suggestion in report.suggestions:
             body.append(f"\n • {suggestion.text}", style="cyan")

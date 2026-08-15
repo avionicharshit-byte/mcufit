@@ -36,7 +36,7 @@ mcufit check model.tflite --board esp32-s3
 ## Features
 
 - ⚡ **Instant fit verdict** - RAM & flash bars, headroom, and the exact layer where memory peaks
-- 🎯 **Exact mode** - runs your model through the *real* TFLite Micro runtime compiled for your machine: measured bytes, not estimates, zero hardware
+- 🎯 **Exact mode** - runs your model through the *real* TFLite Micro runtime compiled for your machine: activations measured exactly, interpreter overhead an upper bound, zero hardware
 - 🌐 **Browser version** - same engine via WebAssembly, fully private, no install
 - 🔌 **31 boards** - ESP32 family, Pico, STM32, Teensy, Arduino, and more
 - 🤖 **CI guard** - a GitHub Action that fails the PR when your model outgrows the chip
@@ -49,7 +49,7 @@ mcufit check model.tflite --board esp32-s3
 | Command | What you get |
 |---|---|
 | `mcufit check model.tflite -b esp32-s3` | Fit verdict (exit code 1 on ❌ - CI-friendly) |
-| `mcufit check ... --exact` | Measured by the real TFLM runtime |
+| `mcufit check ... --exact` | Measured by the real TFLM runtime (upper bound, see below) |
 | `mcufit compare model.tflite` | Verdict matrix across all 31 boards |
 | `mcufit inspect model.tflite` | Layer-by-layer memory profile |
 | `mcufit boards` | The board database |
@@ -65,12 +65,43 @@ recorded allocations:
 
 ```bash
 mcufit setup-exact                              # one-time (needs git, C++, gmake)
-mcufit check model.tflite -b esp32-s3 --exact   # measured, byte-accurate
+mcufit check model.tflite -b esp32-s3 --exact   # measured on this machine
 ```
 
 On the person-detection reference model: estimate ~74 KB → measured
 **89,248 bytes**. The website does the same trick with TFLM compiled to
-WebAssembly - verdicts flip from "estimate" to "measured" right in the page.
+WebAssembly.
+
+### What "exact" does and does not mean
+
+Only half of the arena is portable, and this used to be overclaimed.
+
+Activation tensors come straight from the model, so their size is identical
+everywhere and the measurement is genuinely exact. The interpreter's own
+bookkeeping is full of pointers, so a 64-bit host build needs more of it than
+a 32-bit microcontroller does.
+
+Measured on a real ESP32-D0WDQ6 at 240 MHz, person_detect, against both of
+mcufit's own builds
+([mcufit-bench](https://github.com/avionicharshit-byte/mcufit-bench),
+2026-08-16):
+
+| arena section | CLI, host arm64 | browser, wasm32 | real device |
+|---|---|---|---|
+| activations | 55,296 | 55,296 | 55,296 |
+| interpreter overhead | 33,952 | 29,132 | 27,004 |
+| **total** | **89,248** | **84,428** | **82,300** |
+| error vs device | +8.4% | +2.6% | - |
+
+Pointer width is the whole story. The 64-bit CLI build needs 6,948 bytes more
+bookkeeping than the chip does; going 32-bit recovers most of it, and what
+remains is struct padding that differs from Xtensa.
+
+Both over-report, which is the safe direction for a fit check, but neither is
+the device's number and the tool no longer claims otherwise. **The browser
+version is currently three times more accurate than `--exact` in the
+terminal.** Fixing that means having the CLI run the same wasm32 build the
+website already ships.
 
 ## Guard your model in CI
 
@@ -113,7 +144,8 @@ intermediate tensor alive at the same moment must fit in SRAM at once.
 mcufit parses the model file directly (weights → flash, activations →
 RAM), computes tensor lifetimes across the execution schedule, and finds
 the peak - the same quantity TFLM's memory planner must pack. Exact mode
-skips the math and asks the real runtime. Board verdicts account for the
+skips the math and asks the real runtime, with the pointer-width caveat
+above. Board verdicts account for the
 RAM your RTOS/Wi-Fi stack already eats before your app gets any.
 
 </details>

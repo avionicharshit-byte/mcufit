@@ -29,6 +29,24 @@ def test_parses_arena_table():
     assert estimate.method == "tflm-host-measurement"
 
 
+def test_host_measurement_admits_it_is_an_upper_bound():
+    # A host build is 64-bit, so its share of the arena spent on interpreter
+    # bookkeeping is larger than a 32-bit device needs. Measured against a real
+    # ESP32: 89,248 B here vs 82,300 B there. The number is allowed to be high,
+    # it is not allowed to pretend it is the device's.
+    estimate = MeasuredArenaEstimator._parse(BENCHMARK_OUTPUT)
+    assert estimate.caveat is not None
+    assert "upper bound" in estimate.caveat
+
+
+def test_static_estimate_carries_no_caveat():
+    # The caveat means something only if unqualified numbers stay unqualified.
+    from mcufit.estimation.greedy import GreedyLifetimeEstimator
+
+    model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
+    assert GreedyLifetimeEstimator().estimate(model).caveat is None
+
+
 def test_parse_failure_raises():
     with pytest.raises(MeasurementUnavailableError):
         MeasuredArenaEstimator._parse("no table here")
