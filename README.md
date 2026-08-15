@@ -41,7 +41,7 @@ mcufit check model.tflite --board esp32-s3
 - 🔌 **31 boards** - ESP32 family, Pico, STM32, Teensy, Arduino, and more
 - 🤖 **CI guard** - a GitHub Action that fails the PR when your model outgrows the chip
 - 💡 **Actionable suggestions** - int8 quantization preview (simulated, not guessed) and which boards *do* fit
-- ⏱️ **Speed ballpark** - rough ms/inference per board from the model's MAC count
+- ⏱️ **Speed, measured** - ms/inference on the boards actually benchmarked on hardware, and silence on the rest
 - 📦 **ONNX support** - `pip install 'mcufit[onnx]'` for the PyTorch world
 
 ## Commands
@@ -53,7 +53,7 @@ mcufit check model.tflite --board esp32-s3
 | `mcufit compare model.tflite` | Verdict matrix across all 31 boards |
 | `mcufit inspect model.tflite` | Layer-by-layer memory profile |
 | `mcufit boards` | The board database |
-| `mcufit setup-exact` | One-time build for exact mode (~5 min) |
+| `mcufit setup-exact` | Native fallback build, only if node is unavailable |
 | `... --json` | Machine-readable output for scripts & CI |
 
 ## Exact mode
@@ -96,6 +96,36 @@ number and the tool says so in its output.
 
 `mcufit setup-exact` still builds the native 64-bit interpreter, for machines
 without node. It is the less accurate path and the CLI warns when it uses it.
+
+## Speed
+
+Only boards measured on real hardware get a speed answer. Everything else gets
+nothing, on purpose.
+
+| board | validated error |
+|---|---|
+| `esp32` | -6% to +4% |
+| `nano33ble` | -11% to +20% |
+
+Speed cannot be derived from a datasheet. Which operators a chip runs fast
+depends on which kernels its vendor happened to write, and that is published
+nowhere. Measured on the two boards above, per operator, in MACs/cycle:
+
+| operator | ESP32 (esp-nn) | Nano 33 BLE (CMSIS-NN) |
+|---|---|---|
+| CONV_2D | 0.073 | 0.190 |
+| DEPTHWISE_CONV_2D | 0.044 | 0.063 |
+| FULLY_CONNECTED | 0.022 | 0.186 |
+
+Each chip is bad at something different. Fully-connected costs **3.2x** more
+than convolution on the ESP32, because esp-nn has no optimised kernel for it
+and it falls back to reference C. On the nRF52840 fully-connected is fine and
+**depthwise** is the weak one, at 3.3x. Nothing warns you either way.
+
+Earlier versions guessed a single `macs_per_cycle` per board. Those guesses
+were wrong by up to 3.2x and ranked the two chips backwards, so they have been
+deleted rather than improved. Numbers come from
+[mcufit-bench](https://github.com/avionicharshit-byte/mcufit-bench).
 
 ## Guard your model in CI
 

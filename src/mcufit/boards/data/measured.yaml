@@ -1,0 +1,46 @@
+# Throughput measured on real hardware. Nothing here is estimated or derived
+# from a datasheet. A board absent from this file gets no speed answer at all.
+#
+# Source: github.com/avionicharshit-byte/mcufit-bench, results/layers.jsonl
+# Method: TFLM's per-operator profiler over 4 models (person_detect, MLPerf Tiny
+# kws / ResNet-8 / anomaly detector), 5 runs each. Layer times sum to the
+# whole-model median within 0.2%.
+#
+# macs_per_cycle: work-proportional operators, pooled across the models using them.
+# us_per_call: operators whose cost is fixed rather than proportional to work.
+# error_pct: worst over- and under-prediction across the 4 validation models.
+
+measurements:
+  esp32:
+    measured_on: 2026-08-16
+    chip: ESP32-D0WDQ6 / D0WD-V3
+    cpu_mhz: 240
+    kernels: esp-nn-optimized
+    toolchain: esp-idf v5.5, -O2
+    error_pct: [-6.4, 4.1]
+    macs_per_cycle:
+      CONV_2D: 0.0732
+      DEPTHWISE_CONV_2D: 0.0443
+      FULLY_CONNECTED: 0.0223
+      ADD: 0.0048
+    us_per_call:
+      AVERAGE_POOL_2D: 415
+      SOFTMAX: 385
+      RESHAPE: 51
+
+  nano33ble:
+    measured_on: 2026-08-16
+    chip: nRF52840
+    cpu_mhz: 64
+    kernels: cmsis-nn-or-reference
+    toolchain: arduino:mbed_nano 4.6.0, Chirale_TensorFLowLite 2.0.0
+    error_pct: [-11.4, 19.8]
+    macs_per_cycle:
+      CONV_2D: 0.1899
+      DEPTHWISE_CONV_2D: 0.0630
+      FULLY_CONNECTED: 0.1863
+      ADD: 0.0083
+    us_per_call:
+      AVERAGE_POOL_2D: 969
+      SOFTMAX: 85
+      RESHAPE: 18

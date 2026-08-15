@@ -2,7 +2,12 @@ from pathlib import Path
 
 import pytest
 
-from mcufit.analysis.latency import count_macs, estimate_latency_ms
+from mcufit.analysis.latency import (
+    count_macs,
+    estimate_latency,
+    macs_by_op,
+    measured_boards,
+)
 from mcufit.analysis.quantization import project_int8, projected_file_size
 from mcufit.boards.yaml_repo import YamlBoardRepository
 from mcufit.domain.model import Quantization
@@ -47,16 +52,24 @@ def test_person_detect_macs_in_mobilenet_range(person_detect):
     assert 2_000_000 < macs < 20_000_000
 
 
-def test_latency_scales_with_board_speed(person_detect):
+def test_unmeasured_boards_get_no_latency(person_detect):
     boards = YamlBoardRepository()
-    fast = estimate_latency_ms(person_detect, boards.get("teensy41"))
-    slow = estimate_latency_ms(person_detect, boards.get("rp2040"))
-    assert fast is not None and slow is not None
-    assert fast < slow
+    for board in boards.list():
+        if board.id in measured_boards():
+            continue
+        assert estimate_latency(person_detect, board) is None, board.id
 
 
-def test_latency_none_without_perf_data(person_detect):
-    from mcufit.domain.board import Board
+def test_measured_boards_reproduce_the_device(person_detect):
+    # person_detect on real hardware: 474 ms on ESP32, 655 ms on nano33ble
+    # (mcufit-bench, 2026-08-16). Bound covers the stated validation error.
+    boards = YamlBoardRepository()
+    for board_id, actual_ms in (("esp32", 474), ("nano33ble", 655)):
+        est = estimate_latency(person_detect, boards.get(board_id))
+        assert est is not None
+        error = abs(est.milliseconds - actual_ms) / actual_ms
+        assert error < 0.25, f"{board_id}: {est.milliseconds:.0f} vs {actual_ms}"
 
-    board = Board(id="x", name="X", chip="c", sram_bytes=1, flash_bytes=1)
-    assert estimate_latency_ms(person_detect, board) is None
+
+def test_macs_by_op_sums_to_total(person_detect):
+    assert sum(macs_by_op(person_detect).values()) == count_macs(person_detect)

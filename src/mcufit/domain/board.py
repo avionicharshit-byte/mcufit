@@ -19,7 +19,6 @@ class Board:
     notes: str = ""
     vendor: str = "Other"
     cpu_mhz: int = 0
-    macs_per_cycle: float = 0.0
 
     @property
     def usable_sram_bytes(self) -> int:

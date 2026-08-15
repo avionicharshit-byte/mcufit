@@ -6,7 +6,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 
-from ..analysis.latency import estimate_latency_ms
+from ..analysis.latency import estimate_latency, measured_boards
 from ..domain.report import FitReport
 
 _BAR_WIDTH = 20
@@ -83,12 +83,24 @@ class RichReportRenderer:
                 f"{_fmt(est.peak_activation_bytes)} live tensors\n",
                 style="dim",
             )
-        latency = estimate_latency_ms(model, board)
+        latency = estimate_latency(model, board)
         if latency is not None and report.fits:
-            fps = 1000 / latency if latency > 0 else 0
+            fps = 1000 / latency.milliseconds if latency.milliseconds > 0 else 0
             body.append(
-                f"Speed (very rough): ~{latency:.0f} ms/inference (~{fps:.1f}/sec) "
-                f"on this chip\n",
+                f"Speed: {latency.milliseconds:.0f} ms/inference (~{fps:.1f}/sec)\n",
+                style="dim",
+            )
+            body.append(f"       {latency.accuracy_note}\n", style="dim")
+            if latency.unmodelled_ops:
+                body.append(
+                    f"       excludes {', '.join(latency.unmodelled_ops)}, not measured\n",
+                    style="dim",
+                )
+        elif report.fits:
+            body.append(
+                "Speed: not measured on this board. Only "
+                f"{', '.join(measured_boards())} have real numbers; "
+                "a guess here would be wrong by up to 3x.\n",
                 style="dim",
             )
         body.append(

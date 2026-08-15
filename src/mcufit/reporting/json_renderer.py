@@ -6,8 +6,24 @@ import json
 import sys
 from typing import TextIO
 
-from ..analysis.latency import count_macs, estimate_latency_ms
+from ..analysis.latency import count_macs, estimate_latency, macs_by_op
 from ..domain.report import FitReport
+
+
+def _latency(report) -> dict:
+    """Measured or nothing. An unmeasured board gets no number to misread."""
+    est = estimate_latency(report.model, report.board)
+    if est is None:
+        return {"measured": False, "milliseconds": None,
+                "note": "no hardware measurement for this board"}
+    return {
+        "measured": True,
+        "milliseconds": round(est.milliseconds, 1),
+        "measured_on": est.measured_on,
+        "kernels": est.kernels,
+        "error_pct": list(est.error_pct),
+        "unmodelled_ops": list(est.unmodelled_ops),
+    }
 
 
 class JsonReportRenderer:
@@ -44,7 +60,8 @@ class JsonReportRenderer:
             },
             "flash_needed_bytes": report.flash_needed_bytes,
             "macs": count_macs(report.model),
-            "rough_latency_ms": estimate_latency_ms(report.model, report.board),
+            "macs_by_op": macs_by_op(report.model),
+            "latency": _latency(report),
             "fits": report.fits,
             "fits_ram": report.fits_ram,
             "fits_flash": report.fits_flash,

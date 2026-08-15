@@ -1,29 +1,102 @@
-"""Order-of-magnitude inference latency from MAC counts.
+"""Inference latency from per-operator throughput measured on real hardware.
 
-Counts multiply-accumulates for the compute-heavy ops and divides by the
-board's rough throughput (clock x MACs/cycle for its core family). Real
-latency depends on kernels, memory placement, and quantization - this is
-for "milliseconds or seconds?" answers, and is labelled accordingly.
+Only boards in `boards/data/measured.yaml` get an answer. Everything else
+returns None, because speed cannot be derived from a datasheet: which operators
+a chip runs fast depends on which kernels its vendor happened to write, and
+that differs per chip. On the two boards measured so far, fully-connected is
+3.2x slower than convolution on ESP32 while depthwise is 3.3x slower than
+convolution on the nRF52840.
 """
 
 from __future__ import annotations
+
+from collections import defaultdict
+from dataclasses import dataclass
+from functools import lru_cache
+from importlib import resources
+
+import yaml
 
 from ..domain.board import Board
 from ..domain.model import LayerInfo, ModelInfo, TensorInfo
 
 
+@dataclass(frozen=True)
+class LatencyEstimate:
+    milliseconds: float
+    board_id: str
+    measured_on: str
+    kernels: str
+    error_pct: tuple[float, float]
+    unmodelled_ops: tuple[str, ...]
+    """Operators in the model with no measurement, so excluded from the total."""
+
+    @property
+    def accuracy_note(self) -> str:
+        low, high = self.error_pct
+        return f"measured {self.measured_on} on {self.kernels}; {low:+.0f}% to {high:+.0f}%"
+
+
+@lru_cache(maxsize=1)
+def _measurements() -> dict:
+    data = resources.files("mcufit.boards.data").joinpath("measured.yaml")
+    return yaml.safe_load(data.read_text()).get("measurements", {})
+
+
+def measured_boards() -> list[str]:
+    return sorted(_measurements())
+
+
 def count_macs(model: ModelInfo) -> int:
+    return sum(macs_by_op(model).values())
+
+
+def macs_by_op(model: ModelInfo) -> dict[str, int]:
     tensors = {t.index: t for t in model.tensors}
-    return sum(_layer_macs(layer, tensors) for layer in model.layers)
+    out: dict[str, int] = defaultdict(int)
+    for layer in model.layers:
+        out[layer.op_name] += _layer_macs(layer, tensors)
+    return dict(out)
 
 
-def estimate_latency_ms(model: ModelInfo, board: Board) -> float | None:
-    if board.cpu_mhz <= 0 or board.macs_per_cycle <= 0:
+def calls_by_op(model: ModelInfo) -> dict[str, int]:
+    out: dict[str, int] = defaultdict(int)
+    for layer in model.layers:
+        out[layer.op_name] += 1
+    return dict(out)
+
+
+def estimate_latency(model: ModelInfo, board: Board) -> LatencyEstimate | None:
+    entry = _measurements().get(board.id)
+    if entry is None:
         return None
-    macs = count_macs(model)
-    if macs == 0:
+
+    per_cycle = entry.get("macs_per_cycle", {})
+    per_call = entry.get("us_per_call", {})
+    mhz = entry.get("cpu_mhz") or board.cpu_mhz
+    if not mhz:
         return None
-    return macs / (board.cpu_mhz * 1e6 * board.macs_per_cycle) * 1000
+
+    macs, calls = macs_by_op(model), calls_by_op(model)
+    microseconds = 0.0
+    unmodelled = []
+    for op in calls:
+        if op in per_cycle and per_cycle[op] > 0:
+            microseconds += macs.get(op, 0) / per_cycle[op] / mhz
+        elif op in per_call:
+            microseconds += per_call[op] * calls[op]
+        else:
+            unmodelled.append(op)
+
+    low, high = entry.get("error_pct", [0, 0])
+    return LatencyEstimate(
+        milliseconds=microseconds / 1000,
+        board_id=board.id,
+        measured_on=str(entry.get("measured_on", "unknown")),
+        kernels=str(entry.get("kernels", "unknown")),
+        error_pct=(float(low), float(high)),
+        unmodelled_ops=tuple(sorted(unmodelled)),
+    )
 
 
 def _layer_macs(layer: LayerInfo, tensors: dict[int, TensorInfo]) -> int:

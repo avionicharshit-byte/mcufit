@@ -8,7 +8,6 @@ boards:
   - id: esp32
     vendor: Espressif
     cpu_mhz: 240
-    macs_per_cycle: 0.2
     name: ESP32 DevKit
     chip: ESP32 (Xtensa LX6 dual-core @ 240 MHz)
     sram: 532480        # 520 KB
@@ -19,7 +18,6 @@ boards:
   - id: esp32-s3
     vendor: Espressif
     cpu_mhz: 240
-    macs_per_cycle: 0.5
     name: ESP32-S3 DevKit
     chip: ESP32-S3 (Xtensa LX7 dual-core @ 240 MHz, vector instructions)
     sram: 524288        # 512 KB
@@ -31,7 +29,6 @@ boards:
   - id: esp32-c3
     vendor: Espressif
     cpu_mhz: 160
-    macs_per_cycle: 0.1
     name: ESP32-C3 DevKit
     chip: ESP32-C3 (RISC-V single-core @ 160 MHz)
     sram: 409600        # 400 KB
@@ -42,7 +39,6 @@ boards:
   - id: rp2040
     vendor: Raspberry Pi
     cpu_mhz: 133
-    macs_per_cycle: 0.05
     name: Raspberry Pi Pico
     chip: RP2040 (Cortex-M0+ dual-core @ 133 MHz)
     sram: 270336        # 264 KB
@@ -53,7 +49,6 @@ boards:
   - id: rp2350
     vendor: Raspberry Pi
     cpu_mhz: 150
-    macs_per_cycle: 0.15
     name: Raspberry Pi Pico 2
     chip: RP2350 (Cortex-M33 dual-core @ 150 MHz)
     sram: 532480        # 520 KB
@@ -64,7 +59,6 @@ boards:
   - id: stm32f411
     vendor: STM32
     cpu_mhz: 100
-    macs_per_cycle: 0.15
     name: STM32F411 "BlackPill"
     chip: STM32F411CE (Cortex-M4F @ 100 MHz)
     sram: 131072        # 128 KB
@@ -75,7 +69,6 @@ boards:
   - id: stm32f746
     vendor: STM32
     cpu_mhz: 216
-    macs_per_cycle: 0.4
     name: STM32F746 Discovery
     chip: STM32F746NG (Cortex-M7 @ 216 MHz)
     sram: 327680        # 320 KB
@@ -86,7 +79,6 @@ boards:
   - id: stm32h743
     vendor: STM32
     cpu_mhz: 480
-    macs_per_cycle: 0.4
     name: STM32H743 Nucleo
     chip: STM32H743ZI (Cortex-M7 @ 480 MHz)
     sram: 1048576       # 1 MB total (512 KB AXI + banks)
@@ -97,7 +89,6 @@ boards:
   - id: nano33ble
     vendor: Arduino
     cpu_mhz: 64
-    macs_per_cycle: 0.15
     name: Arduino Nano 33 BLE Sense
     chip: nRF52840 (Cortex-M4F @ 64 MHz)
     sram: 262144        # 256 KB
@@ -108,7 +99,6 @@ boards:
   - id: teensy41
     vendor: Teensy
     cpu_mhz: 600
-    macs_per_cycle: 0.4
     name: Teensy 4.1
     chip: i.MX RT1062 (Cortex-M7 @ 600 MHz)
     sram: 1048576       # 1 MB (512 KB TCM + 512 KB OCRAM)
@@ -119,7 +109,6 @@ boards:
   - id: xiao-esp32s3
     vendor: Seeed Studio
     cpu_mhz: 240
-    macs_per_cycle: 0.5
     name: Seeed XIAO ESP32S3 Sense
     chip: ESP32-S3 (Xtensa LX7 dual-core @ 240 MHz)
     sram: 524288        # 512 KB
@@ -131,7 +120,6 @@ boards:
   - id: uno
     vendor: Arduino
     cpu_mhz: 16
-    macs_per_cycle: 0.02
     name: Arduino Uno R3
     chip: ATmega328P (AVR @ 16 MHz)
     sram: 2048          # 2 KB
@@ -142,7 +130,6 @@ boards:
   - id: esp32-s2
     vendor: Espressif
     cpu_mhz: 240
-    macs_per_cycle: 0.2
     name: ESP32-S2 DevKit
     chip: ESP32-S2 (Xtensa LX7 single-core @ 240 MHz)
     sram: 327680        # 320 KB
@@ -153,7 +140,6 @@ boards:
   - id: esp32-c6
     vendor: Espressif
     cpu_mhz: 160
-    macs_per_cycle: 0.1
     name: ESP32-C6 DevKit
     chip: ESP32-C6 (RISC-V @ 160 MHz)
     sram: 524288        # 512 KB HP SRAM
@@ -164,7 +150,6 @@ boards:
   - id: esp32-p4
     vendor: Espressif
     cpu_mhz: 400
-    macs_per_cycle: 0.8
     name: ESP32-P4 DevKit
     chip: ESP32-P4 (RISC-V dual-core @ 400 MHz)
     sram: 786432        # 768 KB HP SRAM
@@ -176,7 +161,6 @@ boards:
   - id: esp8266
     vendor: Espressif
     cpu_mhz: 80
-    macs_per_cycle: 0.05
     name: ESP8266 NodeMCU
     chip: ESP8266 (Xtensa L106 @ 80 MHz)
     sram: 81920         # ~80 KB user RAM
@@ -187,7 +171,6 @@ boards:
   - id: pico-w
     vendor: Raspberry Pi
     cpu_mhz: 133
-    macs_per_cycle: 0.05
     name: Raspberry Pi Pico W
     chip: RP2040 (Cortex-M0+ dual-core @ 133 MHz)
     sram: 270336        # 264 KB
@@ -198,7 +181,6 @@ boards:
   - id: teensy40
     vendor: Teensy
     cpu_mhz: 600
-    macs_per_cycle: 0.4
     name: Teensy 4.0
     chip: i.MX RT1062 (Cortex-M7 @ 600 MHz)
     sram: 1048576       # 1 MB
@@ -209,7 +191,6 @@ boards:
   - id: nano33iot
     vendor: Arduino
     cpu_mhz: 48
-    macs_per_cycle: 0.05
     name: Arduino Nano 33 IoT
     chip: SAMD21G18 (Cortex-M0+ @ 48 MHz)
     sram: 32768         # 32 KB
@@ -220,7 +201,6 @@ boards:
   - id: uno-r4
     vendor: Arduino
     cpu_mhz: 48
-    macs_per_cycle: 0.15
     name: Arduino Uno R4
     chip: RA4M1 (Cortex-M4 @ 48 MHz)
     sram: 32768         # 32 KB
@@ -231,7 +211,6 @@ boards:
   - id: portenta-h7
     vendor: Arduino
     cpu_mhz: 480
-    macs_per_cycle: 0.4
     name: Arduino Portenta H7
     chip: STM32H747XI (Cortex-M7 @ 480 MHz + M4 @ 240 MHz)
     sram: 1048576       # 1 MB on-chip
@@ -243,7 +222,6 @@ boards:
   - id: stm32f407-disco
     vendor: STM32
     cpu_mhz: 168
-    macs_per_cycle: 0.15
     name: STM32F407 Discovery
     chip: STM32F407VG (Cortex-M4F @ 168 MHz)
     sram: 196608        # 192 KB (128 KB SRAM + 64 KB CCM)
@@ -254,7 +232,6 @@ boards:
   - id: nrf52832
     vendor: Other
     cpu_mhz: 64
-    macs_per_cycle: 0.15
     name: nRF52832 DK
     chip: nRF52832 (Cortex-M4F @ 64 MHz)
     sram: 65536         # 64 KB
@@ -265,7 +242,6 @@ boards:
   - id: xiao-nrf52840
     vendor: Seeed Studio
     cpu_mhz: 64
-    macs_per_cycle: 0.15
     name: Seeed XIAO nRF52840 Sense
     chip: nRF52840 (Cortex-M4F @ 64 MHz)
     sram: 262144        # 256 KB
@@ -276,7 +252,6 @@ boards:
   - id: wio-terminal
     vendor: Seeed Studio
     cpu_mhz: 120
-    macs_per_cycle: 0.15
     name: Seeed Wio Terminal
     chip: SAMD51P19 (Cortex-M4F @ 120 MHz)
     sram: 196608        # 192 KB
@@ -287,7 +262,6 @@ boards:
   - id: sparkfun-edge
     vendor: Other
     cpu_mhz: 48
-    macs_per_cycle: 0.15
     name: SparkFun Edge
     chip: Apollo3 Blue (Cortex-M4F @ 48 MHz)
     sram: 393216        # 384 KB
@@ -298,7 +272,6 @@ boards:
   - id: bluepill
     vendor: STM32
     cpu_mhz: 72
-    macs_per_cycle: 0.08
     name: STM32F103 "Blue Pill"
     chip: STM32F103C8 (Cortex-M3 @ 72 MHz)
     sram: 20480         # 20 KB
@@ -309,7 +282,6 @@ boards:
   - id: mega2560
     vendor: Arduino
     cpu_mhz: 16
-    macs_per_cycle: 0.02
     name: Arduino Mega 2560
     chip: ATmega2560 (AVR @ 16 MHz)
     sram: 8192          # 8 KB
@@ -320,7 +292,6 @@ boards:
   - id: esp32-cam
     vendor: Espressif
     cpu_mhz: 240
-    macs_per_cycle: 0.2
     name: ESP32-CAM (AI-Thinker)
     chip: ESP32 (Xtensa LX6 dual-core @ 240 MHz)
     sram: 532480        # 520 KB
@@ -332,7 +303,6 @@ boards:
   - id: m5stack-core2
     vendor: Espressif
     cpu_mhz: 240
-    macs_per_cycle: 0.2
     name: M5Stack Core2
     chip: ESP32-D0WDQ6-V3 (Xtensa LX6 dual-core @ 240 MHz)
     sram: 532480        # 520 KB
@@ -344,7 +314,6 @@ boards:
   - id: microbit-v2
     vendor: Other
     cpu_mhz: 64
-    macs_per_cycle: 0.15
     name: BBC micro:bit v2
     chip: nRF52833 (Cortex-M4F @ 64 MHz)
     sram: 131072        # 128 KB
