@@ -52,3 +52,15 @@ def test_beats_the_host_build_against_a_real_esp32():
 def test_carries_a_caveat():
     model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
     assert WasmArenaEstimator(node=node_executable()).estimate(model).caveat is not None
+
+
+def test_caveat_states_the_overshoot_in_bytes():
+    # It used to say "~3% high", measured on person_detect alone. The overshoot is
+    # a fixed 2,128 B, so on the anomaly detector's 4.5 KB arena that same slop is
+    # nearly half the number. Stating bytes is what makes it true at both sizes.
+    from mcufit.estimation.wasm import ESP32_OVERSHOOT_BYTES, _caveat
+
+    big, small = _caveat(84_428), _caveat(4_508)
+    assert f"{ESP32_OVERSHOOT_BYTES:,} B" in big
+    assert "3% of this arena" in big
+    assert "47% of this arena" in small
