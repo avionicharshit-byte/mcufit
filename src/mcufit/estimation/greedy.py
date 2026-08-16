@@ -27,7 +27,15 @@ def _align(size: int) -> int:
 class GreedyLifetimeEstimator:
     """ArenaEstimator implementation using static lifetime analysis."""
 
-    scratch_margin: float = 0.20
+    # Was 0.20, which left the estimate 6,153 B BELOW a real ESP32 on
+    # person_detect: mcufit would have said it fits a board it does not fit.
+    # TFLM's interpreter bookkeeping ran between 52 and 303 bytes per tensor
+    # across the four measured models, a 6x spread that no per-tensor constant
+    # covers, so this path cannot be made accurate. It is only reached when node
+    # is missing, so it is made conservative instead: 0.35 is the smallest margin
+    # that clears every measurement in mcufit-bench, and mcufit-bench's validate
+    # workflow fails if a future measurement drops below it again.
+    scratch_margin: float = 0.35
 
     def estimate(self, model: ModelInfo) -> MemoryEstimate:
         lifetimes = self._tensor_lifetimes(model)
@@ -52,6 +60,11 @@ class GreedyLifetimeEstimator:
             margin_bytes=margin,
             peak_layer_index=peak_layer,
             method="static-lifetime-analysis",
+            caveat=(
+                "an estimate, not a measurement, and it can read LOW: against a real "
+                "ESP32 it came out 6,153 B under on person_detect and 11,146 B over on "
+                "ResNet-8. Install node and mcufit measures instead."
+            ),
         )
 
     @staticmethod

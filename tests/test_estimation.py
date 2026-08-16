@@ -37,4 +37,13 @@ def test_peak_layer_is_within_schedule(estimator):
 def test_margin_scales_with_peak(estimator):
     model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
     estimate = estimator.estimate(model)
-    assert estimate.margin_bytes == int(estimate.peak_activation_bytes * 0.20)
+    assert estimate.margin_bytes == int(estimate.peak_activation_bytes * estimator.scratch_margin)
+
+
+def test_static_estimate_clears_the_real_esp32(estimator):
+    # person_detect needs 82,300 B on a real ESP32 (mcufit-bench, 2026-08-16).
+    # At the old 0.20 margin this path returned 76,147, so mcufit would have
+    # called it a fit on a board with 80 KB free. Reading high is fine here;
+    # reading low is not.
+    model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
+    assert estimator.estimate(model).total_arena_bytes >= 82_300

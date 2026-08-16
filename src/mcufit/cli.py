@@ -48,8 +48,15 @@ def _parse_model(model_path: Path) -> ModelInfo:
     raise typer.Exit(2)
 
 
-def _estimator(exact: bool) -> ArenaEstimator:
+def _estimator(exact: bool, model_path: Path | None = None) -> ArenaEstimator:
     if not exact:
+        # Measure rather than estimate whenever we can. The wasm runtime ships in
+        # the wheel and costs about 0.1 s, and the static estimator reads 6 KB
+        # LOW on person_detect against a real ESP32, which is the direction that
+        # makes a fit check say yes when the answer is no.
+        node = node_executable()
+        if node is not None and model_path is not None and model_path.suffix.lower() == ".tflite":
+            return WasmArenaEstimator(node=node)
         return GreedyLifetimeEstimator()
     node = node_executable()
     if node is not None:
@@ -68,8 +75,8 @@ def _estimator(exact: bool) -> ArenaEstimator:
     raise typer.Exit(2)
 
 
-def _checker(exact: bool = False) -> FitChecker:
-    return FitChecker(estimator=_estimator(exact), boards=YamlBoardRepository())
+def _checker(exact: bool = False, model_path: Path | None = None) -> FitChecker:
+    return FitChecker(estimator=_estimator(exact, model_path), boards=YamlBoardRepository())
 
 
 def _fmt(size: int) -> str:
@@ -92,7 +99,7 @@ def check(
         console.print("[red]Exact mode runs the TFLM runtime and supports .tflite only.[/red]")
         raise typer.Exit(2)
     model_info = _parse_model(model)
-    checker = _checker(exact)
+    checker = _checker(exact, model)
     try:
         target = YamlBoardRepository().get(board)
     except UnknownBoardError as exc:
@@ -176,7 +183,7 @@ def compare(
 ):
     """Check MODEL against every board in the database."""
     model_info = _parse_model(model)
-    reports = _checker(exact).check_all(model_info)
+    reports = _checker(exact, model).check_all(model_info)
 
     table = Table(title=f"{model_info.path.name} - fit across boards")
     table.add_column("board", style="cyan")

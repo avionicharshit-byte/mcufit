@@ -35,11 +35,18 @@ def test_host_measurement_carries_a_caveat():
     assert "high" in estimate.caveat
 
 
-def test_static_estimate_carries_no_caveat():
+def test_static_estimate_warns_that_it_can_read_low():
+    # This used to assert the static path carried no caveat, on the reasoning that
+    # an estimate makes no claim so it needs no disclaimer. Measured against real
+    # silicon on 2026-08-16 it came out 6,153 B *under* the ESP32's arena for
+    # person_detect, which is the direction that makes a fit check say yes when the
+    # answer is no. Silence was the wrong default; say so instead.
     from mcufit.estimation.greedy import GreedyLifetimeEstimator
 
     model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
-    assert GreedyLifetimeEstimator().estimate(model).caveat is None
+    caveat = GreedyLifetimeEstimator().estimate(model).caveat
+    assert caveat is not None
+    assert "LOW" in caveat
 
 
 def test_parse_failure_raises():
