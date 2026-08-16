@@ -36,7 +36,7 @@ mcufit check model.tflite --board esp32-s3
 ## Features
 
 - ⚡ **Instant fit verdict** - RAM & flash bars, headroom, and the exact layer where memory peaks
-- 🎯 **Exact mode** - runs your model through the *real* TFLite Micro runtime compiled for your machine: activations measured exactly, interpreter overhead an upper bound, zero hardware
+- 🎯 **Measured, not estimated** - runs your model through the *real* TFLite Micro runtime, automatically, whenever `node` is installed. No flag, no hardware, no build step
 - 🌐 **Browser version** - same engine via WebAssembly, fully private, no install
 - 🔌 **31 boards** - ESP32 family, Pico, STM32, Teensy, Arduino, and more
 - 🤖 **CI guard** - a GitHub Action that fails the PR when your model outgrows the chip
@@ -48,28 +48,31 @@ mcufit check model.tflite --board esp32-s3
 
 | Command | What you get |
 |---|---|
-| `mcufit check model.tflite -b esp32-s3` | Fit verdict (exit code 1 on ❌ - CI-friendly) |
-| `mcufit check ... --exact` | Measured by the real TFLM runtime (upper bound, see below) |
+| `mcufit check model.tflite -b esp32-s3` | Fit verdict (exit code 1 on ❌ - CI-friendly). Measures with the real runtime if `node` is present |
+| `mcufit check ... --exact` | Force the measurement, and fail rather than fall back |
 | `mcufit compare model.tflite` | Verdict matrix across all 31 boards |
 | `mcufit inspect model.tflite` | Layer-by-layer memory profile |
 | `mcufit boards` | The board database |
 | `mcufit setup-exact` | Native fallback build, only if node is unavailable |
 | `... --json` | Machine-readable output for scripts & CI |
 
-## Exact mode
+## How the arena number is produced
 
-Static analysis is instant but approximate - real runtimes allocate
-per-operator working memory no file analysis can see. Exact mode runs your
-model through the actual TFLite Micro interpreter and reads its recorded
-allocations:
+If `node` is on your PATH, `mcufit check` runs your model through the actual
+TFLite Micro interpreter and reads its recorded allocations. This is the
+default: it costs about 0.1 s and needs no flag, no compiler and no hardware,
+because the interpreter ships in the wheel compiled to wasm32.
 
 ```bash
-mcufit check model.tflite -b esp32-s3 --exact   # needs node, nothing to build
+mcufit check model.tflite -b esp32-s3            # measures, if node is installed
+mcufit check model.tflite -b esp32-s3 --exact    # require it; fail instead of falling back
 ```
 
-The interpreter ships in the wheel, compiled to wasm32 and run under node.
-There is no setup step and no compiler. On the person-detection reference
-model: estimate ~74 KB → measured **84,428 bytes**.
+Without node it falls back to static analysis, which is **deliberately
+conservative and says so in its output**. Up to v0.4.0 that fallback was the
+default and it read 6,153 bytes *below* a real ESP32 on the person-detection
+model, so mcufit would have called it a fit on a board it does not fit. If you
+are on the old behaviour, install node or upgrade.
 
 ### How close it gets
 
@@ -89,10 +92,18 @@ Measured against a real ESP32-D0WDQ6 at 240 MHz, person_detect
 | **total** | **89,248** | **84,428** | **82,300** |
 | error vs device | +8.4% | +2.6% | - |
 
-wasm32 is 32-bit like the chip, which is why `--exact` uses it. What is left
-is struct padding that differs from Xtensa. It reads high rather than low,
-which is the safe direction for a fit check, but it is not the device's exact
-number and the tool says so in its output.
+wasm32 is 32-bit like the chip, which is why mcufit uses it. What is left is
+struct padding that differs from Xtensa, and it is **a fixed 2,128 bytes, not a
+percentage**. Measured across all four benchmark models on a real ESP32 the
+overshoot was 2,128 B every single time, which is 2.6% of the person-detection
+arena and 89% of the anomaly detector's. It reads high rather than low, which
+is the safe direction for a fit check, and the tool now states the overshoot in
+bytes and what it is worth for your model.
+
+It is not subtracted, because it belongs to a (TFLM version, target ABI) pair
+rather than to wasm32: against a Nano 33 BLE the same four deltas are 744,
+1,304, 1,688 and 1,912. Subtracting the ESP32 figure everywhere would make the
+tool read low on other targets.
 
 `mcufit setup-exact` still builds the native 64-bit interpreter, for machines
 without node. It is the less accurate path and the CLI warns when it uses it.
