@@ -1,4 +1,4 @@
-<svg class="rich-terminal" viewBox="0 0 1019 952.8" xmlns="http://www.w3.org/2000/svg">
+<svg class="rich-terminal" viewBox="0 0 1019 1026.0" xmlns="http://www.w3.org/2000/svg">
     <!-- Generated with Rich https://www.textualize.io -->
     <style>
 
@@ -19,191 +19,203 @@
         font-weight: 700;
     }
 
-    .terminal-3386740697-matrix {
+    .terminal-3087267486-matrix {
         font-family: Fira Code, monospace;
         font-size: 20px;
         line-height: 24.4px;
         font-variant-east-asian: full-width;
     }
 
-    .terminal-3386740697-title {
+    .terminal-3087267486-title {
         font-size: 18px;
         font-weight: bold;
         font-family: arial;
     }
 
-    .terminal-3386740697-r1 { fill: #c5c8c6;font-weight: bold }
-.terminal-3386740697-r2 { fill: #c5c8c6 }
-.terminal-3386740697-r3 { fill: #98a84b }
-.terminal-3386740697-r4 { fill: #98a84b;font-weight: bold }
-.terminal-3386740697-r5 { fill: #868887 }
-.terminal-3386740697-r6 { fill: #d0b344 }
-.terminal-3386740697-r7 { fill: #68a0b3 }
-.terminal-3386740697-r8 { fill: #cc555a }
-.terminal-3386740697-r9 { fill: #cc555a;font-weight: bold }
+    .terminal-3087267486-r1 { fill: #c5c8c6;font-weight: bold }
+.terminal-3087267486-r2 { fill: #c5c8c6 }
+.terminal-3087267486-r3 { fill: #98a84b }
+.terminal-3087267486-r4 { fill: #98a84b;font-weight: bold }
+.terminal-3087267486-r5 { fill: #868887 }
+.terminal-3087267486-r6 { fill: #d0b344 }
+.terminal-3087267486-r7 { fill: #68a0b3 }
+.terminal-3087267486-r8 { fill: #cc555a }
+.terminal-3087267486-r9 { fill: #cc555a;font-weight: bold }
     </style>
 
     <defs>
-    <clipPath id="terminal-3386740697-clip-terminal">
-      <rect x="0" y="0" width="999.4" height="901.8" />
+    <clipPath id="terminal-3087267486-clip-terminal">
+      <rect x="0" y="0" width="999.4" height="975.0" />
     </clipPath>
-    <clipPath id="terminal-3386740697-line-0">
+    <clipPath id="terminal-3087267486-line-0">
     <rect x="0" y="1.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-1">
+<clipPath id="terminal-3087267486-line-1">
     <rect x="0" y="25.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-2">
+<clipPath id="terminal-3087267486-line-2">
     <rect x="0" y="50.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-3">
+<clipPath id="terminal-3087267486-line-3">
     <rect x="0" y="74.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-4">
+<clipPath id="terminal-3087267486-line-4">
     <rect x="0" y="99.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-5">
+<clipPath id="terminal-3087267486-line-5">
     <rect x="0" y="123.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-6">
+<clipPath id="terminal-3087267486-line-6">
     <rect x="0" y="147.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-7">
+<clipPath id="terminal-3087267486-line-7">
     <rect x="0" y="172.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-8">
+<clipPath id="terminal-3087267486-line-8">
     <rect x="0" y="196.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-9">
+<clipPath id="terminal-3087267486-line-9">
     <rect x="0" y="221.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-10">
+<clipPath id="terminal-3087267486-line-10">
     <rect x="0" y="245.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-11">
+<clipPath id="terminal-3087267486-line-11">
     <rect x="0" y="269.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-12">
+<clipPath id="terminal-3087267486-line-12">
     <rect x="0" y="294.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-13">
+<clipPath id="terminal-3087267486-line-13">
     <rect x="0" y="318.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-14">
+<clipPath id="terminal-3087267486-line-14">
     <rect x="0" y="343.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-15">
+<clipPath id="terminal-3087267486-line-15">
     <rect x="0" y="367.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-16">
+<clipPath id="terminal-3087267486-line-16">
     <rect x="0" y="391.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-17">
+<clipPath id="terminal-3087267486-line-17">
     <rect x="0" y="416.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-18">
+<clipPath id="terminal-3087267486-line-18">
     <rect x="0" y="440.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-19">
+<clipPath id="terminal-3087267486-line-19">
     <rect x="0" y="465.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-20">
+<clipPath id="terminal-3087267486-line-20">
     <rect x="0" y="489.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-21">
+<clipPath id="terminal-3087267486-line-21">
     <rect x="0" y="513.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-22">
+<clipPath id="terminal-3087267486-line-22">
     <rect x="0" y="538.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-23">
+<clipPath id="terminal-3087267486-line-23">
     <rect x="0" y="562.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-24">
+<clipPath id="terminal-3087267486-line-24">
     <rect x="0" y="587.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-25">
+<clipPath id="terminal-3087267486-line-25">
     <rect x="0" y="611.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-26">
+<clipPath id="terminal-3087267486-line-26">
     <rect x="0" y="635.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-27">
+<clipPath id="terminal-3087267486-line-27">
     <rect x="0" y="660.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-28">
+<clipPath id="terminal-3087267486-line-28">
     <rect x="0" y="684.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-29">
+<clipPath id="terminal-3087267486-line-29">
     <rect x="0" y="709.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-30">
+<clipPath id="terminal-3087267486-line-30">
     <rect x="0" y="733.5" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-31">
+<clipPath id="terminal-3087267486-line-31">
     <rect x="0" y="757.9" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-32">
+<clipPath id="terminal-3087267486-line-32">
     <rect x="0" y="782.3" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-33">
+<clipPath id="terminal-3087267486-line-33">
     <rect x="0" y="806.7" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-34">
+<clipPath id="terminal-3087267486-line-34">
     <rect x="0" y="831.1" width="1000.4" height="24.65"/>
             </clipPath>
-<clipPath id="terminal-3386740697-line-35">
+<clipPath id="terminal-3087267486-line-35">
     <rect x="0" y="855.5" width="1000.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-3087267486-line-36">
+    <rect x="0" y="879.9" width="1000.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-3087267486-line-37">
+    <rect x="0" y="904.3" width="1000.4" height="24.65"/>
+            </clipPath>
+<clipPath id="terminal-3087267486-line-38">
+    <rect x="0" y="928.7" width="1000.4" height="24.65"/>
             </clipPath>
     </defs>
 
-    <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="1017" height="950.8" rx="8"/><text class="terminal-3386740697-title" fill="#c5c8c6" text-anchor="middle" x="508" y="27">mcufit</text>
+    <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="1017" height="1024" rx="8"/><text class="terminal-3087267486-title" fill="#c5c8c6" text-anchor="middle" x="508" y="27">mcufit</text>
             <g transform="translate(26,22)">
             <circle cx="0" cy="0" r="7" fill="#ff5f57"/>
             <circle cx="22" cy="0" r="7" fill="#febc2e"/>
             <circle cx="44" cy="0" r="7" fill="#28c840"/>
             </g>
         
-    <g transform="translate(9, 41)" clip-path="url(#terminal-3386740697-clip-terminal)">
+    <g transform="translate(9, 41)" clip-path="url(#terminal-3087267486-clip-terminal)">
     
-    <g class="terminal-3386740697-matrix">
-    <text class="terminal-3386740697-r1" x="0" y="20" textLength="573.4" clip-path="url(#terminal-3386740697-line-0)">$&#160;mcufit&#160;check&#160;person_detect.tflite&#160;-b&#160;esp32-s3</text><text class="terminal-3386740697-r2" x="1000.4" y="20" textLength="12.2" clip-path="url(#terminal-3386740697-line-0)">
-</text><text class="terminal-3386740697-r3" x="0" y="44.4" textLength="24.4" clip-path="url(#terminal-3386740697-line-1)">╭─</text><text class="terminal-3386740697-r3" x="24.4" y="44.4" textLength="329.4" clip-path="url(#terminal-3386740697-line-1)">───────────────────────────</text><text class="terminal-3386740697-r3" x="353.8" y="44.4" textLength="280.6" clip-path="url(#terminal-3386740697-line-1)">&#160;mcufit&#160;-&#160;does&#160;it&#160;fit?&#160;</text><text class="terminal-3386740697-r3" x="634.4" y="44.4" textLength="341.6" clip-path="url(#terminal-3386740697-line-1)">────────────────────────────</text><text class="terminal-3386740697-r3" x="976" y="44.4" textLength="24.4" clip-path="url(#terminal-3386740697-line-1)">─╮</text><text class="terminal-3386740697-r2" x="1000.4" y="44.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-1)">
-</text><text class="terminal-3386740697-r3" x="0" y="68.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-2)">│</text><text class="terminal-3386740697-r1" x="24.4" y="68.8" textLength="97.6" clip-path="url(#terminal-3386740697-line-2)">Model:&#160;&#160;</text><text class="terminal-3386740697-r2" x="122" y="68.8" textLength="573.4" clip-path="url(#terminal-3386740697-line-2)">person_detect.tflite&#160;&#160;(int8,&#160;31&#160;layers,&#160;294&#160;KB)</text><text class="terminal-3386740697-r3" x="988.2" y="68.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-2)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="68.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-2)">
-</text><text class="terminal-3386740697-r3" x="0" y="93.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-3)">│</text><text class="terminal-3386740697-r1" x="24.4" y="93.2" textLength="97.6" clip-path="url(#terminal-3386740697-line-3)">Board:&#160;&#160;</text><text class="terminal-3386740697-r2" x="122" y="93.2" textLength="634.4" clip-path="url(#terminal-3386740697-line-3)">ESP32-S3&#160;DevKit&#160;&#160;(362&#160;KB&#160;usable&#160;SRAM&#160;·&#160;8.0&#160;MB&#160;flash)</text><text class="terminal-3386740697-r3" x="988.2" y="93.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-3)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="93.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-3)">
-</text><text class="terminal-3386740697-r3" x="0" y="117.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-4)">│</text><text class="terminal-3386740697-r3" x="988.2" y="117.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-4)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="117.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-4)">
-</text><text class="terminal-3386740697-r3" x="0" y="142" textLength="12.2" clip-path="url(#terminal-3386740697-line-5)">│</text><text class="terminal-3386740697-r4" x="24.4" y="142" textLength="73.2" clip-path="url(#terminal-3386740697-line-5)">✅&#160;FITS</text><text class="terminal-3386740697-r3" x="988.2" y="142" textLength="12.2" clip-path="url(#terminal-3386740697-line-5)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="142" textLength="12.2" clip-path="url(#terminal-3386740697-line-5)">
-</text><text class="terminal-3386740697-r3" x="0" y="166.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-6)">│</text><text class="terminal-3386740697-r3" x="988.2" y="166.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-6)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="166.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-6)">
-</text><text class="terminal-3386740697-r3" x="0" y="190.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-7)">│</text><text class="terminal-3386740697-r1" x="24.4" y="190.8" textLength="73.2" clip-path="url(#terminal-3386740697-line-7)">RAM&#160;&#160;&#160;</text><text class="terminal-3386740697-r3" x="97.6" y="190.8" textLength="244" clip-path="url(#terminal-3386740697-line-7)">█████░░░░░░░░░░░░░░░</text><text class="terminal-3386740697-r2" x="341.6" y="190.8" textLength="366" clip-path="url(#terminal-3386740697-line-7)">&#160;&#160;~82&#160;KB&#160;arena&#160;/&#160;362&#160;KB&#160;&#160;(23%)</text><text class="terminal-3386740697-r3" x="988.2" y="190.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-7)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="190.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-7)">
-</text><text class="terminal-3386740697-r3" x="0" y="215.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-8)">│</text><text class="terminal-3386740697-r1" x="24.4" y="215.2" textLength="73.2" clip-path="url(#terminal-3386740697-line-8)">Flash&#160;</text><text class="terminal-3386740697-r3" x="97.6" y="215.2" textLength="244" clip-path="url(#terminal-3386740697-line-8)">█░░░░░░░░░░░░░░░░░░░</text><text class="terminal-3386740697-r2" x="341.6" y="215.2" textLength="353.8" clip-path="url(#terminal-3386740697-line-8)">&#160;&#160;444&#160;KB&#160;total&#160;/&#160;8.0&#160;MB&#160;&#160;(5%)</text><text class="terminal-3386740697-r3" x="988.2" y="215.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-8)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="215.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-8)">
-</text><text class="terminal-3386740697-r3" x="0" y="239.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-9)">│</text><text class="terminal-3386740697-r3" x="988.2" y="239.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-9)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="239.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-9)">
-</text><text class="terminal-3386740697-r3" x="0" y="264" textLength="12.2" clip-path="url(#terminal-3386740697-line-10)">│</text><text class="terminal-3386740697-r5" x="24.4" y="264" textLength="951.6" clip-path="url(#terminal-3386740697-line-10)">Speed:&#160;not&#160;measured&#160;on&#160;this&#160;board.&#160;Only&#160;esp32,&#160;nano33ble&#160;have&#160;real&#160;numbers;&#160;a&#160;</text><text class="terminal-3386740697-r3" x="988.2" y="264" textLength="12.2" clip-path="url(#terminal-3386740697-line-10)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="264" textLength="12.2" clip-path="url(#terminal-3386740697-line-10)">
-</text><text class="terminal-3386740697-r3" x="0" y="288.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-11)">│</text><text class="terminal-3386740697-r5" x="24.4" y="288.4" textLength="463.6" clip-path="url(#terminal-3386740697-line-11)">guess&#160;here&#160;would&#160;be&#160;wrong&#160;by&#160;up&#160;to&#160;3x.</text><text class="terminal-3386740697-r3" x="988.2" y="288.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-11)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="288.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-11)">
-</text><text class="terminal-3386740697-r3" x="0" y="312.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-12)">│</text><text class="terminal-3386740697-r5" x="24.4" y="312.8" textLength="951.6" clip-path="url(#terminal-3386740697-line-12)">Method:&#160;tflm-wasm32-measurement&#160;(+28&#160;KB&#160;runtime&#160;overhead,&#160;+0&#160;B&#160;scratch&#160;margin)</text><text class="terminal-3386740697-r3" x="988.2" y="312.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-12)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="312.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-12)">
-</text><text class="terminal-3386740697-r3" x="0" y="337.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-13)">│</text><text class="terminal-3386740697-r6" x="24.4" y="337.2" textLength="939.4" clip-path="url(#terminal-3386740697-line-13)">Caveat:&#160;reads&#160;about&#160;2,128&#160;B&#160;high&#160;against&#160;a&#160;real&#160;ESP32,&#160;a&#160;fixed&#160;amount&#160;rather&#160;</text><text class="terminal-3386740697-r3" x="988.2" y="337.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-13)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="337.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-13)">
-</text><text class="terminal-3386740697-r3" x="0" y="361.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-14)">│</text><text class="terminal-3386740697-r6" x="24.4" y="361.6" textLength="829.6" clip-path="url(#terminal-3386740697-line-14)">than&#160;a&#160;percentage,&#160;which&#160;is&#160;3%&#160;of&#160;this&#160;arena.&#160;Treat&#160;it&#160;as&#160;a&#160;ceiling.</text><text class="terminal-3386740697-r3" x="988.2" y="361.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-14)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="361.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-14)">
-</text><text class="terminal-3386740697-r3" x="0" y="386" textLength="12.2" clip-path="url(#terminal-3386740697-line-15)">│</text><text class="terminal-3386740697-r3" x="988.2" y="386" textLength="12.2" clip-path="url(#terminal-3386740697-line-15)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="386" textLength="12.2" clip-path="url(#terminal-3386740697-line-15)">
-</text><text class="terminal-3386740697-r3" x="0" y="410.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-16)">│</text><text class="terminal-3386740697-r7" x="24.4" y="410.4" textLength="951.6" clip-path="url(#terminal-3386740697-line-16)">&#160;•&#160;Leaves&#160;~280&#160;KB&#160;RAM&#160;for&#160;your&#160;application,&#160;sensor&#160;buffers,&#160;and&#160;network&#160;stack.</text><text class="terminal-3386740697-r3" x="988.2" y="410.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-16)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="410.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-16)">
-</text><text class="terminal-3386740697-r3" x="0" y="434.8" textLength="1000.4" clip-path="url(#terminal-3386740697-line-17)">╰────────────────────────────────────────────────────────────────────────────────╯</text><text class="terminal-3386740697-r2" x="1000.4" y="434.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-17)">
-</text><text class="terminal-3386740697-r2" x="1000.4" y="459.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-18)">
-</text><text class="terminal-3386740697-r1" x="0" y="483.6" textLength="512.4" clip-path="url(#terminal-3386740697-line-19)">$&#160;mcufit&#160;check&#160;person_detect.tflite&#160;-b&#160;uno</text><text class="terminal-3386740697-r2" x="1000.4" y="483.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-19)">
-</text><text class="terminal-3386740697-r8" x="0" y="508" textLength="24.4" clip-path="url(#terminal-3386740697-line-20)">╭─</text><text class="terminal-3386740697-r8" x="24.4" y="508" textLength="329.4" clip-path="url(#terminal-3386740697-line-20)">───────────────────────────</text><text class="terminal-3386740697-r8" x="353.8" y="508" textLength="280.6" clip-path="url(#terminal-3386740697-line-20)">&#160;mcufit&#160;-&#160;does&#160;it&#160;fit?&#160;</text><text class="terminal-3386740697-r8" x="634.4" y="508" textLength="341.6" clip-path="url(#terminal-3386740697-line-20)">────────────────────────────</text><text class="terminal-3386740697-r8" x="976" y="508" textLength="24.4" clip-path="url(#terminal-3386740697-line-20)">─╮</text><text class="terminal-3386740697-r2" x="1000.4" y="508" textLength="12.2" clip-path="url(#terminal-3386740697-line-20)">
-</text><text class="terminal-3386740697-r8" x="0" y="532.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-21)">│</text><text class="terminal-3386740697-r1" x="24.4" y="532.4" textLength="97.6" clip-path="url(#terminal-3386740697-line-21)">Model:&#160;&#160;</text><text class="terminal-3386740697-r2" x="122" y="532.4" textLength="573.4" clip-path="url(#terminal-3386740697-line-21)">person_detect.tflite&#160;&#160;(int8,&#160;31&#160;layers,&#160;294&#160;KB)</text><text class="terminal-3386740697-r8" x="988.2" y="532.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-21)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="532.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-21)">
-</text><text class="terminal-3386740697-r8" x="0" y="556.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-22)">│</text><text class="terminal-3386740697-r1" x="24.4" y="556.8" textLength="97.6" clip-path="url(#terminal-3386740697-line-22)">Board:&#160;&#160;</text><text class="terminal-3386740697-r2" x="122" y="556.8" textLength="585.6" clip-path="url(#terminal-3386740697-line-22)">Arduino&#160;Uno&#160;R3&#160;&#160;(2&#160;KB&#160;usable&#160;SRAM&#160;·&#160;32&#160;KB&#160;flash)</text><text class="terminal-3386740697-r8" x="988.2" y="556.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-22)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="556.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-22)">
-</text><text class="terminal-3386740697-r8" x="0" y="581.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-23)">│</text><text class="terminal-3386740697-r8" x="988.2" y="581.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-23)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="581.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-23)">
-</text><text class="terminal-3386740697-r8" x="0" y="605.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-24)">│</text><text class="terminal-3386740697-r9" x="24.4" y="605.6" textLength="134.2" clip-path="url(#terminal-3386740697-line-24)">❌&#160;WON&#x27;T&#160;FIT</text><text class="terminal-3386740697-r8" x="170.8" y="605.6" textLength="780.8" clip-path="url(#terminal-3386740697-line-24)">&#160;-&#160;needs&#160;~82&#160;KB&#160;RAM,&#160;board&#160;has&#160;2&#160;KB&#160;usable;&#160;needs&#160;444&#160;KB&#160;flash,&#160;</text><text class="terminal-3386740697-r8" x="988.2" y="605.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-24)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="605.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-24)">
-</text><text class="terminal-3386740697-r8" x="0" y="630" textLength="12.2" clip-path="url(#terminal-3386740697-line-25)">│</text><text class="terminal-3386740697-r8" x="24.4" y="630" textLength="183" clip-path="url(#terminal-3386740697-line-25)">board&#160;has&#160;32&#160;KB</text><text class="terminal-3386740697-r8" x="988.2" y="630" textLength="12.2" clip-path="url(#terminal-3386740697-line-25)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="630" textLength="12.2" clip-path="url(#terminal-3386740697-line-25)">
-</text><text class="terminal-3386740697-r8" x="0" y="654.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-26)">│</text><text class="terminal-3386740697-r8" x="988.2" y="654.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-26)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="654.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-26)">
-</text><text class="terminal-3386740697-r8" x="0" y="678.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-27)">│</text><text class="terminal-3386740697-r1" x="24.4" y="678.8" textLength="73.2" clip-path="url(#terminal-3386740697-line-27)">RAM&#160;&#160;&#160;</text><text class="terminal-3386740697-r8" x="97.6" y="678.8" textLength="244" clip-path="url(#terminal-3386740697-line-27)">████████████████████</text><text class="terminal-3386740697-r2" x="341.6" y="678.8" textLength="353.8" clip-path="url(#terminal-3386740697-line-27)">&#160;&#160;~82&#160;KB&#160;arena&#160;/&#160;2&#160;KB&#160;&#160;(999%)</text><text class="terminal-3386740697-r8" x="988.2" y="678.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-27)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="678.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-27)">
-</text><text class="terminal-3386740697-r8" x="0" y="703.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-28)">│</text><text class="terminal-3386740697-r1" x="24.4" y="703.2" textLength="73.2" clip-path="url(#terminal-3386740697-line-28)">Flash&#160;</text><text class="terminal-3386740697-r8" x="97.6" y="703.2" textLength="244" clip-path="url(#terminal-3386740697-line-28)">████████████████████</text><text class="terminal-3386740697-r2" x="341.6" y="703.2" textLength="366" clip-path="url(#terminal-3386740697-line-28)">&#160;&#160;444&#160;KB&#160;total&#160;/&#160;32&#160;KB&#160;&#160;(999%)</text><text class="terminal-3386740697-r8" x="988.2" y="703.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-28)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="703.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-28)">
-</text><text class="terminal-3386740697-r8" x="0" y="727.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-29)">│</text><text class="terminal-3386740697-r8" x="988.2" y="727.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-29)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="727.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-29)">
-</text><text class="terminal-3386740697-r8" x="0" y="752" textLength="12.2" clip-path="url(#terminal-3386740697-line-30)">│</text><text class="terminal-3386740697-r5" x="24.4" y="752" textLength="951.6" clip-path="url(#terminal-3386740697-line-30)">Method:&#160;tflm-wasm32-measurement&#160;(+28&#160;KB&#160;runtime&#160;overhead,&#160;+0&#160;B&#160;scratch&#160;margin)</text><text class="terminal-3386740697-r8" x="988.2" y="752" textLength="12.2" clip-path="url(#terminal-3386740697-line-30)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="752" textLength="12.2" clip-path="url(#terminal-3386740697-line-30)">
-</text><text class="terminal-3386740697-r8" x="0" y="776.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-31)">│</text><text class="terminal-3386740697-r6" x="24.4" y="776.4" textLength="939.4" clip-path="url(#terminal-3386740697-line-31)">Caveat:&#160;reads&#160;about&#160;2,128&#160;B&#160;high&#160;against&#160;a&#160;real&#160;ESP32,&#160;a&#160;fixed&#160;amount&#160;rather&#160;</text><text class="terminal-3386740697-r8" x="988.2" y="776.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-31)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="776.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-31)">
-</text><text class="terminal-3386740697-r8" x="0" y="800.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-32)">│</text><text class="terminal-3386740697-r6" x="24.4" y="800.8" textLength="829.6" clip-path="url(#terminal-3386740697-line-32)">than&#160;a&#160;percentage,&#160;which&#160;is&#160;3%&#160;of&#160;this&#160;arena.&#160;Treat&#160;it&#160;as&#160;a&#160;ceiling.</text><text class="terminal-3386740697-r8" x="988.2" y="800.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-32)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="800.8" textLength="12.2" clip-path="url(#terminal-3386740697-line-32)">
-</text><text class="terminal-3386740697-r8" x="0" y="825.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-33)">│</text><text class="terminal-3386740697-r8" x="988.2" y="825.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-33)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="825.2" textLength="12.2" clip-path="url(#terminal-3386740697-line-33)">
-</text><text class="terminal-3386740697-r8" x="0" y="849.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-34)">│</text><text class="terminal-3386740697-r7" x="24.4" y="849.6" textLength="890.6" clip-path="url(#terminal-3386740697-line-34)">&#160;•&#160;Smallest&#160;boards&#160;that&#160;fit&#160;this&#160;model&#160;as-is:&#160;STM32F411&#160;&quot;BlackPill&quot;,&#160;BBC&#160;</text><text class="terminal-3386740697-r8" x="988.2" y="849.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-34)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="849.6" textLength="12.2" clip-path="url(#terminal-3386740697-line-34)">
-</text><text class="terminal-3386740697-r8" x="0" y="874" textLength="12.2" clip-path="url(#terminal-3386740697-line-35)">│</text><text class="terminal-3386740697-r7" x="24.4" y="874" textLength="414.8" clip-path="url(#terminal-3386740697-line-35)">micro:bit&#160;v2,&#160;STM32F407&#160;Discovery.</text><text class="terminal-3386740697-r8" x="988.2" y="874" textLength="12.2" clip-path="url(#terminal-3386740697-line-35)">│</text><text class="terminal-3386740697-r2" x="1000.4" y="874" textLength="12.2" clip-path="url(#terminal-3386740697-line-35)">
-</text><text class="terminal-3386740697-r8" x="0" y="898.4" textLength="1000.4" clip-path="url(#terminal-3386740697-line-36)">╰────────────────────────────────────────────────────────────────────────────────╯</text><text class="terminal-3386740697-r2" x="1000.4" y="898.4" textLength="12.2" clip-path="url(#terminal-3386740697-line-36)">
+    <g class="terminal-3087267486-matrix">
+    <text class="terminal-3087267486-r1" x="0" y="20" textLength="573.4" clip-path="url(#terminal-3087267486-line-0)">$&#160;mcufit&#160;check&#160;person_detect.tflite&#160;-b&#160;esp32-s3</text><text class="terminal-3087267486-r2" x="1000.4" y="20" textLength="12.2" clip-path="url(#terminal-3087267486-line-0)">
+</text><text class="terminal-3087267486-r3" x="0" y="44.4" textLength="24.4" clip-path="url(#terminal-3087267486-line-1)">╭─</text><text class="terminal-3087267486-r3" x="24.4" y="44.4" textLength="329.4" clip-path="url(#terminal-3087267486-line-1)">───────────────────────────</text><text class="terminal-3087267486-r3" x="353.8" y="44.4" textLength="280.6" clip-path="url(#terminal-3087267486-line-1)">&#160;mcufit&#160;-&#160;does&#160;it&#160;fit?&#160;</text><text class="terminal-3087267486-r3" x="634.4" y="44.4" textLength="341.6" clip-path="url(#terminal-3087267486-line-1)">────────────────────────────</text><text class="terminal-3087267486-r3" x="976" y="44.4" textLength="24.4" clip-path="url(#terminal-3087267486-line-1)">─╮</text><text class="terminal-3087267486-r2" x="1000.4" y="44.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-1)">
+</text><text class="terminal-3087267486-r3" x="0" y="68.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-2)">│</text><text class="terminal-3087267486-r1" x="24.4" y="68.8" textLength="97.6" clip-path="url(#terminal-3087267486-line-2)">Model:&#160;&#160;</text><text class="terminal-3087267486-r2" x="122" y="68.8" textLength="573.4" clip-path="url(#terminal-3087267486-line-2)">person_detect.tflite&#160;&#160;(int8,&#160;31&#160;layers,&#160;294&#160;KB)</text><text class="terminal-3087267486-r3" x="988.2" y="68.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-2)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="68.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-2)">
+</text><text class="terminal-3087267486-r3" x="0" y="93.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-3)">│</text><text class="terminal-3087267486-r1" x="24.4" y="93.2" textLength="97.6" clip-path="url(#terminal-3087267486-line-3)">Board:&#160;&#160;</text><text class="terminal-3087267486-r2" x="122" y="93.2" textLength="634.4" clip-path="url(#terminal-3087267486-line-3)">ESP32-S3&#160;DevKit&#160;&#160;(362&#160;KB&#160;usable&#160;SRAM&#160;·&#160;8.0&#160;MB&#160;flash)</text><text class="terminal-3087267486-r3" x="988.2" y="93.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-3)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="93.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-3)">
+</text><text class="terminal-3087267486-r3" x="0" y="117.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-4)">│</text><text class="terminal-3087267486-r3" x="988.2" y="117.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-4)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="117.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-4)">
+</text><text class="terminal-3087267486-r3" x="0" y="142" textLength="12.2" clip-path="url(#terminal-3087267486-line-5)">│</text><text class="terminal-3087267486-r4" x="24.4" y="142" textLength="73.2" clip-path="url(#terminal-3087267486-line-5)">✅&#160;FITS</text><text class="terminal-3087267486-r3" x="988.2" y="142" textLength="12.2" clip-path="url(#terminal-3087267486-line-5)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="142" textLength="12.2" clip-path="url(#terminal-3087267486-line-5)">
+</text><text class="terminal-3087267486-r3" x="0" y="166.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-6)">│</text><text class="terminal-3087267486-r3" x="988.2" y="166.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-6)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="166.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-6)">
+</text><text class="terminal-3087267486-r3" x="0" y="190.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-7)">│</text><text class="terminal-3087267486-r1" x="24.4" y="190.8" textLength="73.2" clip-path="url(#terminal-3087267486-line-7)">RAM&#160;&#160;&#160;</text><text class="terminal-3087267486-r3" x="97.6" y="190.8" textLength="244" clip-path="url(#terminal-3087267486-line-7)">█████░░░░░░░░░░░░░░░</text><text class="terminal-3087267486-r2" x="341.6" y="190.8" textLength="366" clip-path="url(#terminal-3087267486-line-7)">&#160;&#160;~82&#160;KB&#160;arena&#160;/&#160;362&#160;KB&#160;&#160;(23%)</text><text class="terminal-3087267486-r3" x="988.2" y="190.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-7)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="190.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-7)">
+</text><text class="terminal-3087267486-r3" x="0" y="215.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-8)">│</text><text class="terminal-3087267486-r1" x="24.4" y="215.2" textLength="73.2" clip-path="url(#terminal-3087267486-line-8)">Flash&#160;</text><text class="terminal-3087267486-r3" x="97.6" y="215.2" textLength="244" clip-path="url(#terminal-3087267486-line-8)">█░░░░░░░░░░░░░░░░░░░</text><text class="terminal-3087267486-r2" x="341.6" y="215.2" textLength="353.8" clip-path="url(#terminal-3087267486-line-8)">&#160;&#160;405&#160;KB&#160;total&#160;/&#160;8.0&#160;MB&#160;&#160;(5%)</text><text class="terminal-3087267486-r3" x="988.2" y="215.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-8)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="215.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-8)">
+</text><text class="terminal-3087267486-r3" x="0" y="239.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-9)">│</text><text class="terminal-3087267486-r3" x="988.2" y="239.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-9)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="239.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-9)">
+</text><text class="terminal-3087267486-r3" x="0" y="264" textLength="12.2" clip-path="url(#terminal-3087267486-line-10)">│</text><text class="terminal-3087267486-r5" x="24.4" y="264" textLength="951.6" clip-path="url(#terminal-3087267486-line-10)">Speed:&#160;not&#160;measured&#160;on&#160;this&#160;board.&#160;Only&#160;esp32,&#160;nano33ble&#160;have&#160;real&#160;numbers;&#160;a&#160;</text><text class="terminal-3087267486-r3" x="988.2" y="264" textLength="12.2" clip-path="url(#terminal-3087267486-line-10)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="264" textLength="12.2" clip-path="url(#terminal-3087267486-line-10)">
+</text><text class="terminal-3087267486-r3" x="0" y="288.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-11)">│</text><text class="terminal-3087267486-r5" x="24.4" y="288.4" textLength="463.6" clip-path="url(#terminal-3087267486-line-11)">guess&#160;here&#160;would&#160;be&#160;wrong&#160;by&#160;up&#160;to&#160;3x.</text><text class="terminal-3087267486-r3" x="988.2" y="288.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-11)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="288.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-11)">
+</text><text class="terminal-3087267486-r3" x="0" y="312.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-12)">│</text><text class="terminal-3087267486-r5" x="24.4" y="312.8" textLength="951.6" clip-path="url(#terminal-3087267486-line-12)">Method:&#160;tflm-wasm32-measurement&#160;(+28&#160;KB&#160;runtime&#160;overhead,&#160;+0&#160;B&#160;scratch&#160;margin)</text><text class="terminal-3087267486-r3" x="988.2" y="312.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-12)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="312.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-12)">
+</text><text class="terminal-3087267486-r3" x="0" y="337.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-13)">│</text><text class="terminal-3087267486-r6" x="24.4" y="337.2" textLength="939.4" clip-path="url(#terminal-3087267486-line-13)">Caveat:&#160;reads&#160;about&#160;2,128&#160;B&#160;high&#160;against&#160;a&#160;real&#160;ESP32,&#160;a&#160;fixed&#160;amount&#160;rather&#160;</text><text class="terminal-3087267486-r3" x="988.2" y="337.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-13)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="337.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-13)">
+</text><text class="terminal-3087267486-r3" x="0" y="361.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-14)">│</text><text class="terminal-3087267486-r6" x="24.4" y="361.6" textLength="829.6" clip-path="url(#terminal-3087267486-line-14)">than&#160;a&#160;percentage,&#160;which&#160;is&#160;3%&#160;of&#160;this&#160;arena.&#160;Treat&#160;it&#160;as&#160;a&#160;ceiling.</text><text class="terminal-3087267486-r3" x="988.2" y="361.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-14)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="361.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-14)">
+</text><text class="terminal-3087267486-r3" x="0" y="386" textLength="12.2" clip-path="url(#terminal-3087267486-line-15)">│</text><text class="terminal-3087267486-r3" x="988.2" y="386" textLength="12.2" clip-path="url(#terminal-3087267486-line-15)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="386" textLength="12.2" clip-path="url(#terminal-3087267486-line-15)">
+</text><text class="terminal-3087267486-r3" x="0" y="410.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-16)">│</text><text class="terminal-3087267486-r7" x="24.4" y="410.4" textLength="951.6" clip-path="url(#terminal-3087267486-line-16)">&#160;•&#160;Leaves&#160;~280&#160;KB&#160;RAM&#160;for&#160;your&#160;application,&#160;sensor&#160;buffers,&#160;and&#160;network&#160;stack.</text><text class="terminal-3087267486-r3" x="988.2" y="410.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-16)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="410.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-16)">
+</text><text class="terminal-3087267486-r3" x="0" y="434.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-17)">│</text><text class="terminal-3087267486-r7" x="24.4" y="434.8" textLength="915" clip-path="url(#terminal-3087267486-line-17)">&#160;•&#160;Leaves&#160;~7.6&#160;MB&#160;flash.&#160;Flash&#160;counts&#160;the&#160;model&#160;and&#160;the&#160;TFLM&#160;runtime&#160;only.&#160;</text><text class="terminal-3087267486-r3" x="988.2" y="434.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-17)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="434.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-17)">
+</text><text class="terminal-3087267486-r3" x="0" y="459.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-18)">│</text><text class="terminal-3087267486-r7" x="24.4" y="459.2" textLength="939.4" clip-path="url(#terminal-3087267486-line-18)">Your&#160;application,&#160;RTOS&#160;and&#160;radio&#160;stack&#160;are&#160;not&#160;included,&#160;and&#160;an&#160;empty&#160;sketch&#160;</text><text class="terminal-3087267486-r3" x="988.2" y="459.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-18)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="459.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-18)">
+</text><text class="terminal-3087267486-r3" x="0" y="483.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-19)">│</text><text class="terminal-3087267486-r7" x="24.4" y="483.6" textLength="744.2" clip-path="url(#terminal-3087267486-line-19)">alone&#160;costs&#160;85&#160;KB&#160;on&#160;a&#160;Nano&#160;33&#160;BLE&#160;and&#160;347&#160;KB&#160;on&#160;an&#160;ESP32-S3.</text><text class="terminal-3087267486-r3" x="988.2" y="483.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-19)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="483.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-19)">
+</text><text class="terminal-3087267486-r3" x="0" y="508" textLength="1000.4" clip-path="url(#terminal-3087267486-line-20)">╰────────────────────────────────────────────────────────────────────────────────╯</text><text class="terminal-3087267486-r2" x="1000.4" y="508" textLength="12.2" clip-path="url(#terminal-3087267486-line-20)">
+</text><text class="terminal-3087267486-r2" x="1000.4" y="532.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-21)">
+</text><text class="terminal-3087267486-r1" x="0" y="556.8" textLength="512.4" clip-path="url(#terminal-3087267486-line-22)">$&#160;mcufit&#160;check&#160;person_detect.tflite&#160;-b&#160;uno</text><text class="terminal-3087267486-r2" x="1000.4" y="556.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-22)">
+</text><text class="terminal-3087267486-r8" x="0" y="581.2" textLength="24.4" clip-path="url(#terminal-3087267486-line-23)">╭─</text><text class="terminal-3087267486-r8" x="24.4" y="581.2" textLength="329.4" clip-path="url(#terminal-3087267486-line-23)">───────────────────────────</text><text class="terminal-3087267486-r8" x="353.8" y="581.2" textLength="280.6" clip-path="url(#terminal-3087267486-line-23)">&#160;mcufit&#160;-&#160;does&#160;it&#160;fit?&#160;</text><text class="terminal-3087267486-r8" x="634.4" y="581.2" textLength="341.6" clip-path="url(#terminal-3087267486-line-23)">────────────────────────────</text><text class="terminal-3087267486-r8" x="976" y="581.2" textLength="24.4" clip-path="url(#terminal-3087267486-line-23)">─╮</text><text class="terminal-3087267486-r2" x="1000.4" y="581.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-23)">
+</text><text class="terminal-3087267486-r8" x="0" y="605.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-24)">│</text><text class="terminal-3087267486-r1" x="24.4" y="605.6" textLength="97.6" clip-path="url(#terminal-3087267486-line-24)">Model:&#160;&#160;</text><text class="terminal-3087267486-r2" x="122" y="605.6" textLength="573.4" clip-path="url(#terminal-3087267486-line-24)">person_detect.tflite&#160;&#160;(int8,&#160;31&#160;layers,&#160;294&#160;KB)</text><text class="terminal-3087267486-r8" x="988.2" y="605.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-24)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="605.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-24)">
+</text><text class="terminal-3087267486-r8" x="0" y="630" textLength="12.2" clip-path="url(#terminal-3087267486-line-25)">│</text><text class="terminal-3087267486-r1" x="24.4" y="630" textLength="97.6" clip-path="url(#terminal-3087267486-line-25)">Board:&#160;&#160;</text><text class="terminal-3087267486-r2" x="122" y="630" textLength="585.6" clip-path="url(#terminal-3087267486-line-25)">Arduino&#160;Uno&#160;R3&#160;&#160;(2&#160;KB&#160;usable&#160;SRAM&#160;·&#160;32&#160;KB&#160;flash)</text><text class="terminal-3087267486-r8" x="988.2" y="630" textLength="12.2" clip-path="url(#terminal-3087267486-line-25)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="630" textLength="12.2" clip-path="url(#terminal-3087267486-line-25)">
+</text><text class="terminal-3087267486-r8" x="0" y="654.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-26)">│</text><text class="terminal-3087267486-r8" x="988.2" y="654.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-26)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="654.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-26)">
+</text><text class="terminal-3087267486-r8" x="0" y="678.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-27)">│</text><text class="terminal-3087267486-r9" x="24.4" y="678.8" textLength="134.2" clip-path="url(#terminal-3087267486-line-27)">❌&#160;WON&#x27;T&#160;FIT</text><text class="terminal-3087267486-r8" x="170.8" y="678.8" textLength="780.8" clip-path="url(#terminal-3087267486-line-27)">&#160;-&#160;needs&#160;~82&#160;KB&#160;RAM,&#160;board&#160;has&#160;2&#160;KB&#160;usable;&#160;needs&#160;405&#160;KB&#160;flash,&#160;</text><text class="terminal-3087267486-r8" x="988.2" y="678.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-27)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="678.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-27)">
+</text><text class="terminal-3087267486-r8" x="0" y="703.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-28)">│</text><text class="terminal-3087267486-r8" x="24.4" y="703.2" textLength="183" clip-path="url(#terminal-3087267486-line-28)">board&#160;has&#160;32&#160;KB</text><text class="terminal-3087267486-r8" x="988.2" y="703.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-28)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="703.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-28)">
+</text><text class="terminal-3087267486-r8" x="0" y="727.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-29)">│</text><text class="terminal-3087267486-r8" x="988.2" y="727.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-29)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="727.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-29)">
+</text><text class="terminal-3087267486-r8" x="0" y="752" textLength="12.2" clip-path="url(#terminal-3087267486-line-30)">│</text><text class="terminal-3087267486-r1" x="24.4" y="752" textLength="73.2" clip-path="url(#terminal-3087267486-line-30)">RAM&#160;&#160;&#160;</text><text class="terminal-3087267486-r8" x="97.6" y="752" textLength="244" clip-path="url(#terminal-3087267486-line-30)">████████████████████</text><text class="terminal-3087267486-r2" x="341.6" y="752" textLength="353.8" clip-path="url(#terminal-3087267486-line-30)">&#160;&#160;~82&#160;KB&#160;arena&#160;/&#160;2&#160;KB&#160;&#160;(999%)</text><text class="terminal-3087267486-r8" x="988.2" y="752" textLength="12.2" clip-path="url(#terminal-3087267486-line-30)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="752" textLength="12.2" clip-path="url(#terminal-3087267486-line-30)">
+</text><text class="terminal-3087267486-r8" x="0" y="776.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-31)">│</text><text class="terminal-3087267486-r1" x="24.4" y="776.4" textLength="73.2" clip-path="url(#terminal-3087267486-line-31)">Flash&#160;</text><text class="terminal-3087267486-r8" x="97.6" y="776.4" textLength="244" clip-path="url(#terminal-3087267486-line-31)">████████████████████</text><text class="terminal-3087267486-r2" x="341.6" y="776.4" textLength="366" clip-path="url(#terminal-3087267486-line-31)">&#160;&#160;405&#160;KB&#160;total&#160;/&#160;32&#160;KB&#160;&#160;(999%)</text><text class="terminal-3087267486-r8" x="988.2" y="776.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-31)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="776.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-31)">
+</text><text class="terminal-3087267486-r8" x="0" y="800.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-32)">│</text><text class="terminal-3087267486-r8" x="988.2" y="800.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-32)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="800.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-32)">
+</text><text class="terminal-3087267486-r8" x="0" y="825.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-33)">│</text><text class="terminal-3087267486-r5" x="24.4" y="825.2" textLength="951.6" clip-path="url(#terminal-3087267486-line-33)">Method:&#160;tflm-wasm32-measurement&#160;(+28&#160;KB&#160;runtime&#160;overhead,&#160;+0&#160;B&#160;scratch&#160;margin)</text><text class="terminal-3087267486-r8" x="988.2" y="825.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-33)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="825.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-33)">
+</text><text class="terminal-3087267486-r8" x="0" y="849.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-34)">│</text><text class="terminal-3087267486-r6" x="24.4" y="849.6" textLength="939.4" clip-path="url(#terminal-3087267486-line-34)">Caveat:&#160;reads&#160;about&#160;2,128&#160;B&#160;high&#160;against&#160;a&#160;real&#160;ESP32,&#160;a&#160;fixed&#160;amount&#160;rather&#160;</text><text class="terminal-3087267486-r8" x="988.2" y="849.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-34)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="849.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-34)">
+</text><text class="terminal-3087267486-r8" x="0" y="874" textLength="12.2" clip-path="url(#terminal-3087267486-line-35)">│</text><text class="terminal-3087267486-r6" x="24.4" y="874" textLength="829.6" clip-path="url(#terminal-3087267486-line-35)">than&#160;a&#160;percentage,&#160;which&#160;is&#160;3%&#160;of&#160;this&#160;arena.&#160;Treat&#160;it&#160;as&#160;a&#160;ceiling.</text><text class="terminal-3087267486-r8" x="988.2" y="874" textLength="12.2" clip-path="url(#terminal-3087267486-line-35)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="874" textLength="12.2" clip-path="url(#terminal-3087267486-line-35)">
+</text><text class="terminal-3087267486-r8" x="0" y="898.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-36)">│</text><text class="terminal-3087267486-r8" x="988.2" y="898.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-36)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="898.4" textLength="12.2" clip-path="url(#terminal-3087267486-line-36)">
+</text><text class="terminal-3087267486-r8" x="0" y="922.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-37)">│</text><text class="terminal-3087267486-r7" x="24.4" y="922.8" textLength="890.6" clip-path="url(#terminal-3087267486-line-37)">&#160;•&#160;Smallest&#160;boards&#160;that&#160;fit&#160;this&#160;model&#160;as-is:&#160;STM32F411&#160;&quot;BlackPill&quot;,&#160;BBC&#160;</text><text class="terminal-3087267486-r8" x="988.2" y="922.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-37)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="922.8" textLength="12.2" clip-path="url(#terminal-3087267486-line-37)">
+</text><text class="terminal-3087267486-r8" x="0" y="947.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-38)">│</text><text class="terminal-3087267486-r7" x="24.4" y="947.2" textLength="414.8" clip-path="url(#terminal-3087267486-line-38)">micro:bit&#160;v2,&#160;STM32F407&#160;Discovery.</text><text class="terminal-3087267486-r8" x="988.2" y="947.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-38)">│</text><text class="terminal-3087267486-r2" x="1000.4" y="947.2" textLength="12.2" clip-path="url(#terminal-3087267486-line-38)">
+</text><text class="terminal-3087267486-r8" x="0" y="971.6" textLength="1000.4" clip-path="url(#terminal-3087267486-line-39)">╰────────────────────────────────────────────────────────────────────────────────╯</text><text class="terminal-3087267486-r2" x="1000.4" y="971.6" textLength="12.2" clip-path="url(#terminal-3087267486-line-39)">
 </text>
     </g>
     </g>

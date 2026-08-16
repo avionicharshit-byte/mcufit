@@ -9,10 +9,30 @@ from ..domain.report import FitReport, Suggestion
 from ..estimation.base import ArenaEstimator
 from .quantization import project_int8, projected_file_size
 
-# Flash consumed by the TFLite Micro runtime + kernels themselves, on top
-# of the model file. Varies with the op set linked in; this is a typical
-# figure for a small int8 CNN build on Cortex-M/Xtensa.
-_TFLM_RUNTIME_FLASH_BYTES = 150 * 1024
+# Flash consumed by the TFLite Micro runtime and kernels, on top of the model.
+#
+# Measured 2026-08-16 by compiling an empty sketch and diffing against the
+# benchmark firmware, so the core and OS are excluded from this figure:
+#
+#   Nano 33 BLE (Cortex-M4F, mbed core, CMSIS-NN)     84,528 B
+#   Arduino Nano ESP32 (Xtensa LX7, esp32 core, esp-nn) 114,579 B
+#
+# The larger is used, because between two measurements the conservative choice
+# for a fit check is the one that needs more room. This replaces a hardcoded
+# 150 KB that nothing had ever validated.
+_TFLM_RUNTIME_FLASH_BYTES = 114_579
+
+# What this number is NOT. The application, RTOS, radio stack and bootloader all
+# share the same flash and mcufit cannot see any of them: an empty sketch alone
+# costs 85 KB on the Nano 33 BLE and 347 KB on the Nano ESP32. So the flash
+# figure is a **floor**, not a total. A "will not fit" verdict on flash is
+# therefore certain, while a "fits" only means the model and runtime fit and
+# says how much room is left for everything else.
+_FLASH_IS_A_FLOOR = (
+    "Flash counts the model and the TFLM runtime only. Your application, RTOS "
+    "and radio stack are not included, and an empty sketch alone costs 85 KB on "
+    "a Nano 33 BLE and 347 KB on an ESP32-S3."
+)
 
 
 class FitChecker:
@@ -58,9 +78,15 @@ class FitChecker:
     def _suggest(self, report: FitReport):
         if report.fits:
             headroom = report.board.usable_sram_bytes - report.estimate.total_arena_bytes
+            flash_left = report.board.flash_bytes - report.flash_needed_bytes
             yield Suggestion(
                 f"Leaves ~{_fmt(headroom)} RAM for your application, "
                 "sensor buffers, and network stack."
+            )
+            # The flash figure is a floor, so say what is left rather than
+            # letting a green bar imply the whole firmware was accounted for.
+            yield Suggestion(
+                f"Leaves ~{_fmt(flash_left)} flash. {_FLASH_IS_A_FLOOR}"
             )
             return
 

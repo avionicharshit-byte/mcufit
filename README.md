@@ -108,6 +108,22 @@ tool read low on other targets.
 `mcufit setup-exact` still builds the native 64-bit interpreter, for machines
 without node. It is the less accurate path and the CLI warns when it uses it.
 
+## What the flash number is, and is not
+
+Flash counts **the model plus the TFLite Micro runtime and kernels**, and
+nothing else. The runtime figure is measured, not assumed: compiling an empty
+sketch and diffing against the benchmark firmware gives 84,528 B on a Nano 33
+BLE and 114,579 B on an Arduino Nano ESP32, and mcufit uses the larger.
+
+It does **not** include your application, the RTOS, the radio stack or the
+bootloader, because mcufit cannot see them. Those are not small: an empty
+Arduino sketch alone is 85 KB on a Nano 33 BLE and 347 KB on an ESP32-S3.
+
+So the flash figure is a **floor**. A ❌ on flash is certain. A ✅ means the
+model and runtime fit, and the report tells you how much room is left for
+everything else. Up to v0.5.1 this was a flat hardcoded 150 KB that nothing had
+ever validated, and it read about 3% under real firmware.
+
 ## Speed
 
 Only `esp32` and `nano33ble` have been measured on hardware. Every other board

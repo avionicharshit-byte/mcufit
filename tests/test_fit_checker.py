@@ -82,3 +82,18 @@ def test_compare_estimates_once_not_once_per_board():
     reports = checker.check_all(model)
     assert len(reports) == len(boards.list()) > 1
     assert CountingEstimator.calls == 1
+
+
+def test_flash_figure_is_a_floor_under_real_firmware(checker):
+    # Real firmware built 2026-08-16 with arduino-cli: TFLM + person_detect on a
+    # Nano 33 BLE is 470,480 B, of which 85,384 is the mbed core alone. mcufit
+    # cannot see the core, the RTOS or the application, so its flash number is a
+    # floor and must sit under the real thing. It used to add a hardcoded 150 KB
+    # that nothing validated.
+    from mcufit.boards.yaml_repo import YamlBoardRepository
+
+    model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
+    report = checker.check(model, YamlBoardRepository().get("nano33ble"))
+
+    assert report.flash_needed_bytes >= model.file_size_bytes
+    assert report.flash_needed_bytes <= 470_480, "flash floor must not exceed real firmware"
