@@ -19,9 +19,23 @@ class FitChecker:
     def __init__(self, estimator: ArenaEstimator, boards: BoardRepository):
         self._estimator = estimator
         self._boards = boards
+        self._cached: tuple[ModelInfo, object] | None = None
+
+    def _estimate(self, model: ModelInfo):
+        """Estimate once per model.
+
+        The arena depends on the model and the runtime, never on the board: a
+        real ESP32 and a real nRF52840 came out 82,300 and 82,740 B on the same
+        model. `check_all` used to recompute it for all 31 boards, which cost 31
+        subprocess launches for one identical answer once measuring became the
+        default.
+        """
+        if self._cached is None or self._cached[0] is not model:
+            self._cached = (model, self._estimator.estimate(model))
+        return self._cached[1]
 
     def check(self, model: ModelInfo, board: Board) -> FitReport:
-        estimate = self._estimator.estimate(model)
+        estimate = self._estimate(model)
         flash_needed = model.file_size_bytes + _TFLM_RUNTIME_FLASH_BYTES
         report = FitReport(
             model=model,

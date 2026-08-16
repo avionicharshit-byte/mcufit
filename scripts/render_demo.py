@@ -9,7 +9,7 @@ from rich.console import Console
 
 from mcufit.analysis.fit_checker import FitChecker
 from mcufit.boards.yaml_repo import YamlBoardRepository
-from mcufit.estimation.greedy import GreedyLifetimeEstimator
+from mcufit.estimation.wasm import WasmArenaEstimator, node_executable
 from mcufit.parsing.tflite_parser import TFLiteModelParser
 from mcufit.reporting.rich_renderer import RichReportRenderer
 
@@ -19,7 +19,12 @@ ROOT = Path(__file__).parent.parent
 def main() -> None:
     console = Console(record=True, width=82, force_terminal=True)
     boards = YamlBoardRepository()
-    checker = FitChecker(estimator=GreedyLifetimeEstimator(), boards=boards)
+    # Render what a user actually sees. Since 0.5.0 `check` measures with the
+    # real TFLM runtime whenever node is present, so a demo showing the static
+    # fallback advertises the weaker path.
+    node = node_executable()
+    assert node is not None, "install node: the demo must show the measured path"
+    checker = FitChecker(estimator=WasmArenaEstimator(node=node), boards=boards)
     model = TFLiteModelParser().parse(ROOT / "examples" / "models" / "person_detect.tflite")
     renderer = RichReportRenderer(console)
 

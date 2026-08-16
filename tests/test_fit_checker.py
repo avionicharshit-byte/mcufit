@@ -59,3 +59,26 @@ def test_board_database_loads_and_is_sorted(boards):
     assert len(all_boards) >= 10
     srams = [b.sram_bytes for b in all_boards]
     assert srams == sorted(srams)
+
+
+def test_compare_estimates_once_not_once_per_board():
+    # The arena depends on the model and runtime, never on the board. Once
+    # measuring became the default in 0.5.0, check_all was launching one wasm
+    # subprocess per board: 31 identical answers, 2.7 s instead of 0.25 s.
+    from mcufit.boards.yaml_repo import YamlBoardRepository
+    from mcufit.estimation.greedy import GreedyLifetimeEstimator
+
+    class CountingEstimator(GreedyLifetimeEstimator):
+        calls = 0
+
+        def estimate(self, model):
+            type(self).calls += 1
+            return super().estimate(model)
+
+    boards = YamlBoardRepository()
+    checker = FitChecker(estimator=CountingEstimator(), boards=boards)
+    model = TFLiteModelParser().parse(MODELS / "person_detect.tflite")
+
+    reports = checker.check_all(model)
+    assert len(reports) == len(boards.list()) > 1
+    assert CountingEstimator.calls == 1

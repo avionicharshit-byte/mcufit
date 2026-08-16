@@ -12,7 +12,11 @@ inputs:
     description: "Target board id (see `mcufit boards`)"
     required: true
   exact:
-    description: "Measure with the real TFLM runtime instead of static analysis (slower first run: builds TFLM)"
+    description: >-
+      Require the real TFLM measurement and fail if it is unavailable, instead of
+      falling back to the static estimate. The measurement is already the default
+      here, because this action installs node for it, so you only need this if you
+      would rather the job failed than silently used the estimate.
     required: false
     default: "false"
 
@@ -22,13 +26,18 @@ runs:
     - uses: actions/setup-python@v5
       with:
         python-version: "3.12"
+
+    # mcufit measures the arena by running TFLM compiled to wasm32 under node.
+    # Without node it falls back to a deliberately conservative static estimate,
+    # which would make this action fail builds that actually fit. GitHub-hosted
+    # runners ship node, but self-hosted ones may not, so pin it.
+    - uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
     - shell: bash
       run: pip install --quiet mcufit
-    - if: inputs.exact == 'true'
-      shell: bash
-      run: |
-        pip install --quiet pillow
-        mcufit setup-exact
+
     - shell: bash
       run: |
         EXACT_FLAG=""
