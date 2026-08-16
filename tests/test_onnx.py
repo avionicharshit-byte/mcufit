@@ -55,3 +55,35 @@ def test_estimator_runs_on_onnx(tiny_onnx):
     estimate = GreedyLifetimeEstimator().estimate(model)
     # x(256B) + h(128B) + y(128B) at various lifetimes; peak under 2 KB
     assert 0 < estimate.peak_activation_bytes < 2048
+
+
+def test_onnx_verdict_says_tflm_cannot_run_it(tiny_onnx):
+    # The most confident-looking number mcufit prints is also its least certain:
+    # TFLM cannot execute ONNX at all, so the verdict describes a .tflite that
+    # does not exist yet. Nothing in the output said so until 2026-08-16.
+    from mcufit.analysis.fit_checker import FitChecker
+    from mcufit.boards.yaml_repo import YamlBoardRepository
+
+    boards = YamlBoardRepository()
+    checker = FitChecker(estimator=GreedyLifetimeEstimator(), boards=boards)
+    report = checker.check(OnnxModelParser().parse(tiny_onnx), boards.get("esp32-s3"))
+
+    text = " ".join(s.text for s in report.suggestions)
+    assert "TFLite Micro cannot run it" in text
+    assert "not what you would flash" in text  # the tiny fixture is float32
+
+
+def test_tflite_verdict_carries_no_onnx_warning():
+    from pathlib import Path
+
+    from mcufit.analysis.fit_checker import FitChecker
+    from mcufit.boards.yaml_repo import YamlBoardRepository
+    from mcufit.parsing.tflite_parser import TFLiteModelParser
+
+    models = Path(__file__).parent.parent / "examples" / "models"
+    boards = YamlBoardRepository()
+    checker = FitChecker(estimator=GreedyLifetimeEstimator(), boards=boards)
+    report = checker.check(
+        TFLiteModelParser().parse(models / "person_detect.tflite"), boards.get("esp32-s3")
+    )
+    assert "ONNX" not in " ".join(s.text for s in report.suggestions)

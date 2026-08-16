@@ -76,6 +76,27 @@ class FitChecker:
         return [self.check(model, board) for board in self._boards.list()]
 
     def _suggest(self, report: FitReport):
+        # TFLite Micro cannot run ONNX. Every ONNX verdict is really about the
+        # .tflite you have not converted yet, and nothing else in the output
+        # says so, which makes it the most confident-looking number mcufit
+        # produces and the least certain.
+        if report.model.path.suffix.lower() == ".onnx":
+            yield Suggestion(
+                "This is an ONNX file and TFLite Micro cannot run it. The arena "
+                "figure describes the graph as it stands, so it holds only if "
+                "conversion to .tflite preserves the shapes, and conversion may "
+                "fuse or split operators. Convert first, then re-check the "
+                ".tflite for a number you can trust."
+            )
+            if report.model.quantization == Quantization.FLOAT32:
+                yield Suggestion(
+                    f"Flash here counts the {_fmt(report.model.file_size_bytes)} "
+                    "ONNX file, which is not what you would flash. Quantizing to "
+                    "int8 during conversion typically cuts weights about 4x, so "
+                    "treat this flash figure as an upper bound on a number that "
+                    "is measuring the wrong file."
+                )
+
         if report.fits:
             headroom = report.board.usable_sram_bytes - report.estimate.total_arena_bytes
             flash_left = report.board.flash_bytes - report.flash_needed_bytes

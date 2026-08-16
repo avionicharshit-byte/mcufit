@@ -42,7 +42,7 @@ mcufit check model.tflite --board esp32-s3
 - 🤖 **CI guard** - a GitHub Action that fails the PR when your model outgrows the chip
 - 💡 **Actionable suggestions** - int8 quantization preview (simulated, not guessed) and which boards *do* fit
 - ⏱️ **Speed, measured** - ms/inference on the boards actually benchmarked on hardware, and silence on the rest
-- 📦 **ONNX support** - `pip install 'mcufit[onnx]'` for the PyTorch world
+- 📦 **ONNX support** - `pip install 'mcufit[onnx]'` for the PyTorch world. A first look before you convert, and it says so: TFLM cannot run ONNX, so the verdict describes a `.tflite` you have not made yet
 
 ## Commands
 
